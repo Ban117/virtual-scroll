@@ -56,7 +56,8 @@
           "browserTarget": "virtual-list:build:production"
         },
         "development": {
-          "browserTarget": "virtual-list:build:development"
+          "browserTarget": "virtual-list:build:development",
+          "port": 5630
         }
       },
       "defaultConfiguration": "development"

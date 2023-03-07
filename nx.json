@@ -73,6 +73,13 @@
     },
     "@nrwl/angular:component": {
       "style": "scss"
-    }
+    },
+    "@nrwl/angular:scam": {
+			"style": "scss",
+			"displayBlock": true,
+			"changeDetection": "OnPush",
+			"viewEncapsulation": "None",
+			"skipTests": true
+		}
   }
 }
