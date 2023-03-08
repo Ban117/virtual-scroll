@@ -16,8 +16,14 @@
 		"baseUrl": ".",
 		"paths": {
 			"@ban/web/home/feature": ["libs/web/home/feature/src/index.ts"],
+			"@ban/web/shared/data-access/models": [
+				"libs/web/shared/data-access/models/src/index.ts"
+			],
 			"@ban/web/shared/environments": [
 				"libs/web/shared/environments/src/index.ts"
+			],
+			"@ban/web/shared/ui/list-controller": [
+				"libs/web/shared/ui/list-controller/src/index.ts"
 			],
 			"@ban/web/shell/feature": ["libs/web/shell/feature/src/index.ts"],
 			"@ban/web/shell/ui/layout": [
