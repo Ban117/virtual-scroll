@@ -1,3 +1,13 @@
 .ban-user-list {
 	display: block;
+
+	&__list {
+		width: 400px;
+		margin: 50px auto;
+	}
+
+	// example of overriding height from consumer
+	.ban-list__list-container {
+		height: 400px;
+	}
 }

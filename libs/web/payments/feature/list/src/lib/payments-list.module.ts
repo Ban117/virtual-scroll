@@ -2,15 +2,16 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { ListModule } from "@ban/web/shared/ui/list";
-import { UserListItemModule } from "@ban/web/users/ui/list-item";
+import { PaymentListItemModule } from "@ban/web/payments/ui/list-item";
 import { ListItemTemplateModule } from "@ban/web/shared/ui/list-item-template";
+import { TranslatePipeModule } from "@ban/web/shared/pipes/translate";
 
-import { UserListComponent } from "./user-list.component";
+import { PaymentListComponent } from "./payment-list.component";
 
 const routes: Routes = [
 	{
 		path: "",
-		component: UserListComponent,
+		component: PaymentListComponent,
 	},
 ];
 
@@ -19,9 +20,11 @@ const routes: Routes = [
 		CommonModule,
 		RouterModule.forChild(routes),
 		ListModule,
-		UserListItemModule,
+		PaymentListItemModule,
 		ListItemTemplateModule,
+		TranslatePipeModule,
 	],
-	declarations: [UserListComponent],
+	declarations: [PaymentListComponent],
+	exports: [PaymentListComponent],
 })
-export class UserListModule {}
+export class WebPaymentsFeatureListModule {}

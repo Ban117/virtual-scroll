@@ -1,0 +1,41 @@
+<ban-list
+	class="ban-payment-list__list"
+	showSearch
+	[itemSize]="itemSize"
+	[title]="title"
+	[reachedEnd]="reachedEnd"
+	[searchTerm$]="searchTerm$"
+	[items$]="displayedItems$"
+	(offsetChange)="onOffsetChange($event)"
+>
+	<ng-template
+		[banListItem]="(displayedItems$ | async)!"
+		let-payment
+	>
+		<!-- *** DEMO template typechecking *** -->
+		<div
+			class="ban-payment-list__container"
+			[ngStyle]="{
+				'height.px': itemSize,
+				'width.px': itemSize
+			}"
+		>
+			<p class="ban-payment-list__payment-status">
+				{{ payment.status | translate }}
+			</p>
+			<div class="ban-payment-list__amount">{{ payment.count }}</div>
+		</div>
+	</ng-template>
+
+	<!-- *** DEMO We could alternativley use a component, as the other list pages do *** -->
+	<!-- <ng-template
+		banListItem
+		let-payment
+	>
+		<ban-payment-list-item
+			[payment]="payment"
+			[itemSize]="itemSize"
+		>
+		</ban-payment-list-item>
+	</ng-template> -->
+</ban-list>

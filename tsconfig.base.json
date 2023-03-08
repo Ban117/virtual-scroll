@@ -31,6 +31,12 @@
 			"@ban/web/payments/data-access": [
 				"libs/web/payments/data-access/src/index.ts"
 			],
+			"@ban/web/payments/feature/list": [
+				"libs/web/payments/feature/list/src/index.ts"
+			],
+			"@ban/web/payments/feature/shell": [
+				"libs/web/payments/feature/shell/src/index.ts"
+			],
 			"@ban/web/payments/ui/list-item": [
 				"libs/web/payments/ui/list-item/src/index.ts"
 			],

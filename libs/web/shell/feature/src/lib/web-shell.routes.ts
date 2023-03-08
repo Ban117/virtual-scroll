@@ -28,6 +28,12 @@ export const webShellRoutes: Routes = [
 					(await import("@ban/web/countries/feature/shell"))
 						.CountriesShellModule,
 			},
+			{
+				path: "payments",
+				loadChildren: async () =>
+					(await import("@ban/web/payments/feature/shell"))
+						.PaymentsShellModule,
+			},
 		],
 	},
 ];
