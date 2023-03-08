@@ -28,6 +28,9 @@
 				"libs/web/countries/ui/list-item/src/index.ts"
 			],
 			"@ban/web/home/feature": ["libs/web/home/feature/src/index.ts"],
+			"@ban/web/not-found/feature": [
+				"libs/web/not-found/feature/src/index.ts"
+			],
 			"@ban/web/payments/data-access": [
 				"libs/web/payments/data-access/src/index.ts"
 			],

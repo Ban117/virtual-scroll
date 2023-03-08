@@ -34,6 +34,15 @@ export const webShellRoutes: Routes = [
 					(await import("@ban/web/payments/feature/shell"))
 						.PaymentsShellModule,
 			},
+			{
+				path: "404",
+				loadChildren: async () =>
+					(await import("@ban/web/not-found/feature")).NotFoundModule,
+			},
+			{
+				path: "**",
+				redirectTo: "404",
+			},
 		],
 	},
 ];
