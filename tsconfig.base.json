@@ -15,6 +15,7 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@ban/web/home/feature": ["libs/web/home/feature/src/index.ts"],
 			"@ban/web/shared/environments": [
 				"libs/web/shared/environments/src/index.ts"
 			],
