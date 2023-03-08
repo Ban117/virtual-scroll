@@ -17,6 +17,10 @@
 		"paths": {
 			"@ban/web/shared/environments": [
 				"libs/web/shared/environments/src/index.ts"
+			],
+			"@ban/web/shell/feature": ["libs/web/shell/feature/src/index.ts"],
+			"@ban/web/shell/ui/layout": [
+				"libs/web/shell/ui/layout/src/index.ts"
 			]
 		}
 	},
