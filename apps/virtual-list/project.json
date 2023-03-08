@@ -17,7 +17,12 @@
 				"inlineStyleLanguage": "scss",
 				"assets": [
 					"apps/virtual-list/src/favicon.ico",
-					"apps/virtual-list/src/assets"
+					"apps/virtual-list/src/assets",
+					{
+						"input": "libs/web/not-found/feature/src/assets",
+						"glob": "**/*",
+						"output": "assets/not-found"
+					}
 				],
 				"styles": [
 					"@angular/material/prebuilt-themes/purple-green.css",

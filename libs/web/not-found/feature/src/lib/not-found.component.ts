@@ -15,6 +15,6 @@ import { AnimationOptions } from "ngx-lottie";
 })
 export class NotFoundComponent {
 	options: AnimationOptions = {
-		path: "/assets/lottie/coffee-spilling.json",
+		path: "/assets/not-found/coffee-spilling.json",
 	};
 }
