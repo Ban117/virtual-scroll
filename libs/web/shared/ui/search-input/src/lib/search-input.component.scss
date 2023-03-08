@@ -1,0 +1,8 @@
+.ban-search-input {
+	display: block;
+
+	&__form-field {
+		// not pretty but that's how it's done apparently https://material.angular.io/components/input/examples#input-clearable
+		width: 250px;
+	}
+}

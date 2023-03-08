@@ -1,0 +1,62 @@
+<mat-card class="ban-list__card-container">
+	<h3
+		*ngIf="title"
+		class="ban-list__title"
+	>
+		{{ title }}
+	</h3>
+
+	<ban-search-input
+		*ngIf="showSearch && searchTerm$"
+		[searchTerm$]="searchTerm$"
+		class="ban-list__search"
+	></ban-search-input>
+
+	<cdk-virtual-scroll-viewport
+		class="ban-list__list-container"
+		[itemSize]="itemSize"
+		(scrolledIndexChange)="onScrolledIndexChange()"
+	>
+		<ng-container *ngIf="items$ | async as items">
+			<ng-container *ngIf="!items?.length">
+				<div class="ban-list__no-items">No items found!</div>
+			</ng-container>
+
+			<div
+				*cdkVirtualFor="let item of items; trackBy: trackByFn"
+				class="ban-list__item-container"
+			>
+				<mat-checkbox
+					(change)="onCheckboxChange(item)"
+					[checked]="selectedItems.get(item.id)"
+					class="ban-list__checkbox"
+				></mat-checkbox>
+				<ng-container
+					*ngTemplateOutlet="
+						itemTemplate || defaultTemplate;
+						context: { $implicit: item }
+					"
+				></ng-container>
+			</div>
+		</ng-container>
+	</cdk-virtual-scroll-viewport>
+
+	<div class="ban-list__action-container">
+		<button
+			mat-flat-button
+			color="primary"
+			class="ban-list__action-button"
+			(click)="onContinueClicked()"
+		>
+			<mat-icon iconPositionEnd>arrow_forward</mat-icon>
+			Continue
+		</button>
+	</div>
+
+	<ng-template
+		#defaultTemplate
+		let-item
+	>
+		<p>default template: {{ item | json }}</p>
+	</ng-template>
+</mat-card>

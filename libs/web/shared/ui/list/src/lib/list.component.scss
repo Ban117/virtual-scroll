@@ -1,0 +1,52 @@
+.ban-list {
+	display: block;
+	$list-padding: 16px;
+
+	&__title {
+		padding: $list-padding;
+
+		// honestly I just wanted to find a use for the mixin
+		// todo mixin
+		// @include mixins.ban-hover {
+		// 	color: rgba($color: purple, $alpha: 0.8);
+		// }
+	}
+
+	&__search {
+		padding: 0 $list-padding;
+		align-self: center;
+	}
+
+	&__list-container {
+		height: 300px;
+	}
+
+	&__no-items {
+		text-align: center;
+		font-weight: 500;
+	}
+
+	&__item-container {
+		display: flex;
+		justify-content: space-between;
+		gap: 5px;
+
+		// this would really be taken from some type of theming setup but I decided
+		// to not focus too much on aesthetics
+		&:has(mat-checkbox.mat-mdc-checkbox-checked) {
+			background-color: rgba($color: purple, $alpha: 0.2);
+		}
+	}
+
+	&__checkbox {
+		align-self: center;
+	}
+
+	&__action-container {
+		padding: $list-padding;
+	}
+
+	&__action-button {
+		border-radius: 18px;
+	}
+}
