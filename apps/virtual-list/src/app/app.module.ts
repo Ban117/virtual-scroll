@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { WebShellModule } from "@ban/web/shell/feature";
 
 import { AppComponent } from "./app.component";
 
 @NgModule({
 	declarations: [AppComponent],
-	imports: [BrowserModule, BrowserAnimationsModule],
+	imports: [BrowserModule, WebShellModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })
