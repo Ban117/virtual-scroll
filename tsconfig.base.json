@@ -32,9 +32,13 @@
 			"@ban/web/shared/ui/search-input": [
 				"libs/web/shared/ui/search-input/src/index.ts"
 			],
+			"@ban/web/shared/utils": ["libs/web/shared/utils/src/index.ts"],
 			"@ban/web/shell/feature": ["libs/web/shell/feature/src/index.ts"],
 			"@ban/web/shell/ui/layout": [
 				"libs/web/shell/ui/layout/src/index.ts"
+			],
+			"@ban/web/users/data-access": [
+				"libs/web/users/data-access/src/index.ts"
 			],
 			"@ban/web/users/feature/list": [
 				"libs/web/users/feature/list/src/index.ts"
