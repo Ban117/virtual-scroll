@@ -1,3 +1,23 @@
-:host {
+.ban-avatar {
 	display: block;
+
+	&__image-container {
+		display: flex;
+	}
+
+	&__image {
+		clip-path: circle(50%);
+		object-fit: cover;
+
+		&--empty {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	& &__initials {
+		margin: 0;
+		font-size: 16px;
+	}
 }

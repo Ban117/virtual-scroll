@@ -1,1 +1,21 @@
-<p>user-list works!</p>
+<ban-list
+	class="ban-user-list-page__list"
+	showSearch
+	[itemSize]="itemSize"
+	[title]="title"
+	[reachedEnd]="reachedEnd"
+	[searchTerm$]="searchTerm$"
+	[items$]="displayedItems$"
+	(offsetChange)="onOffsetChange($event)"
+>
+	<ng-template
+		banListItem
+		let-user
+	>
+		<ban-user-list-item
+			[user]="user"
+			[itemSize]="itemSize"
+		>
+		</ban-user-list-item>
+	</ng-template>
+</ban-list>

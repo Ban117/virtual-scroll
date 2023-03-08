@@ -22,6 +22,9 @@
 			"@ban/web/shared/environments": [
 				"libs/web/shared/environments/src/index.ts"
 			],
+			"@ban/web/shared/pipes/initials": [
+				"libs/web/shared/pipes/initials/src/index.ts"
+			],
 			"@ban/web/shared/ui/avatar": [
 				"libs/web/shared/ui/avatar/src/index.ts"
 			],

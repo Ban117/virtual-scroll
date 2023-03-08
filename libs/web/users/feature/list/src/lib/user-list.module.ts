@@ -3,6 +3,9 @@ import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 
 import { UserListComponent } from "./user-list.component";
+import { ListModule } from "@ban/web/shared/ui/list";
+import { UserListItemModule } from "@ban/web/users/ui/list-item";
+import { ListItemTemplateModule } from "@ban/web/shared/ui/list-item-template";
 
 const routes: Routes = [
 	{
@@ -12,7 +15,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [CommonModule, RouterModule.forChild(routes)],
+	imports: [
+		CommonModule,
+		RouterModule.forChild(routes),
+		ListModule,
+		UserListItemModule,
+		ListItemTemplateModule,
+	],
 	declarations: [UserListComponent],
 })
 export class UserListModule {}
