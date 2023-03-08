@@ -1,0 +1,11 @@
+<div class="ban-country-list-item__container">
+	<div class="ban-country-list-item__details">
+		<p class="ban-country-list-item__country-details">
+			{{ country.code | flag }} {{ country.name }} &#x2022;
+			{{ country.code }}
+		</p>
+	</div>
+	<div class="ban-country-list-item__phone-code">
+		{{ country.code | callingCode }}
+	</div>
+</div>

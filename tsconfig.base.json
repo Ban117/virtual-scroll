@@ -15,12 +15,27 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@ban/web/countries/feature/list": [
+				"libs/web/countries/feature/list/src/index.ts"
+			],
+			"@ban/web/countries/feature/shell": [
+				"libs/web/countries/feature/shell/src/index.ts"
+			],
+			"@ban/web/countries/ui/list-item": [
+				"libs/web/countries/ui/list-item/src/index.ts"
+			],
 			"@ban/web/home/feature": ["libs/web/home/feature/src/index.ts"],
 			"@ban/web/shared/data-access/models": [
 				"libs/web/shared/data-access/models/src/index.ts"
 			],
 			"@ban/web/shared/environments": [
 				"libs/web/shared/environments/src/index.ts"
+			],
+			"@ban/web/shared/pipes/calling-code": [
+				"libs/web/shared/pipes/calling-code/src/index.ts"
+			],
+			"@ban/web/shared/pipes/flag": [
+				"libs/web/shared/pipes/flag/src/index.ts"
 			],
 			"@ban/web/shared/pipes/initials": [
 				"libs/web/shared/pipes/initials/src/index.ts"
