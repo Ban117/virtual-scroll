@@ -31,8 +31,14 @@
 			"@ban/web/payments/data-access": [
 				"libs/web/payments/data-access/src/index.ts"
 			],
+			"@ban/web/payments/ui/list-item": [
+				"libs/web/payments/ui/list-item/src/index.ts"
+			],
 			"@ban/web/shared/data-access/models": [
 				"libs/web/shared/data-access/models/src/index.ts"
+			],
+			"@ban/web/shared/data-access/translations": [
+				"libs/web/shared/data-access/translations/src/index.ts"
 			],
 			"@ban/web/shared/environments": [
 				"libs/web/shared/environments/src/index.ts"
@@ -45,6 +51,9 @@
 			],
 			"@ban/web/shared/pipes/initials": [
 				"libs/web/shared/pipes/initials/src/index.ts"
+			],
+			"@ban/web/shared/pipes/translate": [
+				"libs/web/shared/pipes/translate/src/index.ts"
 			],
 			"@ban/web/shared/ui/avatar": [
 				"libs/web/shared/ui/avatar/src/index.ts"
