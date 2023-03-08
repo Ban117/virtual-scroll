@@ -4,12 +4,6 @@
 
 	&__title {
 		padding: $list-padding;
-
-		// honestly I just wanted to find a use for the mixin
-		// todo mixin
-		// @include mixins.ban-hover {
-		// 	color: rgba($color: purple, $alpha: 0.8);
-		// }
 	}
 
 	&__search {

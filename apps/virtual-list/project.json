@@ -28,6 +28,7 @@
 					"@angular/material/prebuilt-themes/purple-green.css",
 					"apps/virtual-list/src/styles.scss"
 				],
+				"allowedCommonJsDependencies": ["lottie-web"],
 				"scripts": []
 			},
 			"configurations": {

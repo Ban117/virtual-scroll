@@ -7,5 +7,6 @@ import { PaymentListItemComponent } from "./payment-list-item.component";
 @NgModule({
 	imports: [CommonModule, TranslatePipeModule],
 	declarations: [PaymentListItemComponent],
+	exports: [PaymentListItemComponent],
 })
 export class PaymentListItemModule {}
