@@ -16,6 +16,12 @@ export const webShellRoutes: Routes = [
 				loadChildren: async () =>
 					(await import("@ban/web/home/feature")).WebHomeModule,
 			},
+			{
+				path: "users",
+				loadChildren: async () =>
+					(await import("@ban/web/users/feature/shell"))
+						.UsersShellModule,
+			},
 		],
 	},
 ];

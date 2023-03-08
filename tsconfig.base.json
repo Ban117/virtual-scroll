@@ -28,6 +28,12 @@
 			"@ban/web/shell/feature": ["libs/web/shell/feature/src/index.ts"],
 			"@ban/web/shell/ui/layout": [
 				"libs/web/shell/ui/layout/src/index.ts"
+			],
+			"@ban/web/users/feature/list": [
+				"libs/web/users/feature/list/src/index.ts"
+			],
+			"@ban/web/users/feature/shell": [
+				"libs/web/users/feature/shell/src/index.ts"
 			]
 		}
 	},
