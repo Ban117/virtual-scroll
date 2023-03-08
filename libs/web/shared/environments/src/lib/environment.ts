@@ -1,3 +1,3 @@
 export const environment = {
-	testing: "prod",
+	jsonServerPort: 3001,
 };
