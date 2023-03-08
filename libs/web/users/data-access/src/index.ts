@@ -1,1 +1,2 @@
-export * from "./lib/web-users-data-access.module";
+export * from "./lib/models";
+export * from "./lib/service";

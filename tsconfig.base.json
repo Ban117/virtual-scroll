@@ -22,6 +22,9 @@
 			"@ban/web/shared/environments": [
 				"libs/web/shared/environments/src/index.ts"
 			],
+			"@ban/web/shared/ui/avatar": [
+				"libs/web/shared/ui/avatar/src/index.ts"
+			],
 			"@ban/web/shared/ui/list": ["libs/web/shared/ui/list/src/index.ts"],
 			"@ban/web/shared/ui/list-controller": [
 				"libs/web/shared/ui/list-controller/src/index.ts"
@@ -45,6 +48,9 @@
 			],
 			"@ban/web/users/feature/shell": [
 				"libs/web/users/feature/shell/src/index.ts"
+			],
+			"@ban/web/users/ui/list-item": [
+				"libs/web/users/ui/list-item/src/index.ts"
 			]
 		}
 	},

@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { UserListComponent } from "./user-list.component";
 import { RouterModule, Routes } from "@angular/router";
+
+import { UserListComponent } from "./user-list.component";
 
 const routes: Routes = [
 	{
@@ -14,4 +15,4 @@ const routes: Routes = [
 	imports: [CommonModule, RouterModule.forChild(routes)],
 	declarations: [UserListComponent],
 })
-export class UsersListModule {}
+export class UserListModule {}

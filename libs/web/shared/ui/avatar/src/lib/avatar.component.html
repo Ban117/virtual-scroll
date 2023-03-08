@@ -1,0 +1,29 @@
+<div class="ban-avatar__image-container">
+	<img
+		*ngIf="avatarUrl"
+		class="ban-avatar__image"
+		[src]="avatarUrl"
+		[ngStyle]="{
+			'background-color': color,
+			'height.px': size,
+			'width.px': size
+		}"
+		alt="user avatar"
+	/>
+	<div
+		*ngIf="!avatarUrl"
+		class="ban-avatar__image ban-avatar__image--empty"
+		[ngStyle]="{
+			'background-color': color,
+			'height.px': size,
+			'width.px': size
+		}"
+	>
+		<p
+			*ngIf="firstName && lastName"
+			class="ban-avatar__initials"
+		>
+			{{ firstName | initials : lastName }}
+		</p>
+	</div>
+</div>

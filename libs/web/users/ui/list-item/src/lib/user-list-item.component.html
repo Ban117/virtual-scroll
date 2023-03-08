@@ -1,0 +1,19 @@
+<div class="ban-user-list-item__container">
+	<div class="ban-user-list-item__details">
+		<p class="ban-user-list-item__name">
+			{{ user.firstName }} {{ user.lastName }}
+		</p>
+		<p class="ban-user-list-item__email">{{ user.email }}</p>
+	</div>
+
+	<ban-avatar
+		class="ban-user-list-item__avatar"
+		[avatarUrl]="user.avatarUrl"
+		[firstName]="user.firstName"
+		[lastName]="user.lastName"
+		[size]="avatarSize"
+		[ngStyle]="{
+			'padding.px': avatarPaddingSize
+		}"
+	></ban-avatar>
+</div>
