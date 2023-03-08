@@ -14,7 +14,11 @@
 		"skipLibCheck": true,
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
-		"paths": {}
+		"paths": {
+			"@ban/web/shared/environments": [
+				"libs/web/shared/environments/src/index.ts"
+			]
+		}
 	},
 	"exclude": ["node_modules", "tmp"]
 }

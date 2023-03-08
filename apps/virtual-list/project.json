@@ -44,7 +44,13 @@
 					"vendorChunk": true,
 					"extractLicenses": false,
 					"sourceMap": true,
-					"namedChunks": true
+					"namedChunks": true,
+					"fileReplacements": [
+						{
+							"replace": "libs/web/shared/environments/src/lib/environment.ts",
+							"with": "libs/web/shared/environments/src/lib/environment.development.ts"
+						}
+					]
 				}
 			},
 			"defaultConfiguration": "production"

@@ -1,0 +1,16 @@
+{
+	"name": "web-shared-environments",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/web/shared/environments/src",
+	"projectType": "library",
+	"targets": {
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/web/shared/environments/**/*.ts"]
+			}
+		}
+	},
+	"tags": ["scope:shared", "type:environments"]
+}
