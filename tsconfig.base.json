@@ -15,6 +15,9 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@ban/web/countries/data-access": [
+				"libs/web/countries/data-access/src/index.ts"
+			],
 			"@ban/web/countries/feature/list": [
 				"libs/web/countries/feature/list/src/index.ts"
 			],

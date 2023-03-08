@@ -1,3 +1,18 @@
 .ban-country-list-item {
 	display: block;
+	width: 100%;
+
+	&__container {
+		display: flex;
+		height: 100%;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 10px;
+	}
+
+	& &__country-details {
+		margin: 0;
+		font-size: 16px;
+		font-weight: 300;
+	}
 }

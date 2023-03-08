@@ -5,6 +5,7 @@ import {
 	Input,
 	ViewEncapsulation,
 } from "@angular/core";
+import { Country } from "@ban/web/countries/data-access";
 
 @Component({
 	selector: "ban-country-list-item",

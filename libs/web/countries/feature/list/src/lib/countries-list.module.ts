@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { CountryListComponent } from "./country-list.component";
 import { ListModule } from "@ban/web/shared/ui/list";
 import { ListItemTemplateModule } from "@ban/web/shared/ui/list-item-template";
+import { CountryListItemModule } from "@ban/web/countries/ui/list-item";
 
 const routes: Routes = [
 	{
@@ -18,6 +19,7 @@ const routes: Routes = [
 		CommonModule,
 		RouterModule.forChild(routes),
 		ListModule,
+		CountryListItemModule,
 		ListItemTemplateModule,
 	],
 	declarations: [CountryListComponent],

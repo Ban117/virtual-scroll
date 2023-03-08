@@ -1,1 +1,21 @@
-<p>country-list works!</p>
+<ban-list
+	class="ban-country-list-page__list"
+	showSearch
+	[itemSize]="itemSize"
+	[title]="title"
+	[reachedEnd]="reachedEnd"
+	[searchTerm$]="searchTerm$"
+	[items$]="displayedItems$"
+	(offsetChange)="onOffsetChange($event)"
+>
+	<ng-template
+		banListItem
+		let-country
+	>
+		<ban-country-list-item
+			[country]="country"
+			[itemSize]="itemSize"
+		>
+		</ban-country-list-item>
+	</ng-template>
+</ban-list>

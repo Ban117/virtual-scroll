@@ -3,6 +3,8 @@ import {
 	Component,
 	ViewEncapsulation,
 } from "@angular/core";
+import { Country, CountryService } from "@ban/web/countries/data-access";
+import { ENTITY_SERVICE } from "@ban/web/shared/data-access/models";
 import { ListControllerBase } from "@ban/web/shared/ui/list-controller";
 
 const COUNTRY_ITEM_SIZE = 60;
@@ -16,6 +18,12 @@ const TITLE = "Manage Countries";
 	styleUrls: ["./country-list.component.scss"],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [
+		{
+			provide: ENTITY_SERVICE,
+			useClass: CountryService,
+		},
+	],
 })
 export class CountryListComponent extends ListControllerBase<Country> {
 	itemSize = COUNTRY_ITEM_SIZE;

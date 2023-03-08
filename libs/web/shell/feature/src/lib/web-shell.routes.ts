@@ -22,6 +22,12 @@ export const webShellRoutes: Routes = [
 					(await import("@ban/web/users/feature/shell"))
 						.UsersShellModule,
 			},
+			{
+				path: "countries",
+				loadChildren: async () =>
+					(await import("@ban/web/countries/feature/shell"))
+						.CountriesShellModule,
+			},
 		],
 	},
 ];
