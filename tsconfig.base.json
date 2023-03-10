@@ -43,6 +43,9 @@
 			"@ban/web/payments/ui/list-item": [
 				"libs/web/payments/ui/list-item/src/index.ts"
 			],
+			"@ban/web/shared/data-access/caching": [
+				"libs/web/shared/data-access/caching/src/index.ts"
+			],
 			"@ban/web/shared/data-access/models": [
 				"libs/web/shared/data-access/models/src/index.ts"
 			],
