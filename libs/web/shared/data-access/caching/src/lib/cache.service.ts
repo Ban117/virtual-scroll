@@ -20,20 +20,9 @@ export class CacheService {
 		const cached = this.cache.get(url);
 
 		if (!cached) {
-			console.warn(
-				"%c>>>> CacheService->get: cacheMiss",
-				"color: Thistle",
-				url,
-			);
 			return undefined;
 		}
 
-		console.warn(
-			"%c>>>> CacheService->get: cacheHit",
-			"color: Thistle",
-			url,
-			this.cache,
-		);
 		const isExpired = cached.lastRead < Date.now() - maxAge;
 
 		return isExpired ? undefined : cached.response;
@@ -48,17 +37,11 @@ export class CacheService {
 			lastRead: Date.now(),
 		};
 		this.cache.set(url, newEntry);
-		console.warn("%c>>>> CacheService->put", "color: Thistle", url);
 
 		// remove expired cache entries
 		const expired = Date.now() - maxAge;
 		this.cache.forEach(entry => {
 			if (entry.lastRead < expired) {
-				console.warn(
-					"%c>>>> CacheService->put: DELETE",
-					"color: Thistle",
-					entry.url,
-				);
 				this.cache.delete(entry.url);
 			}
 		});

@@ -5,18 +5,22 @@ import {
 	HttpEvent,
 	HttpResponse,
 } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Inject, Injectable, InjectionToken, Optional } from "@angular/core";
 
 import { tap, of, Observable } from "rxjs";
 import { CacheService } from "./cache.service";
 
+export const SEARCH_URL = new InjectionToken<string>("SEARCH_URL");
+
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
-	constructor(private cacheService: CacheService) {}
+	constructor(
+		private cacheService: CacheService,
+		@Optional() @Inject(SEARCH_URL) private searchUrl: string,
+	) {}
 
 	intercept(request: HttpRequest<unknown>, next: HttpHandler) {
-		console.warn("%c>>>> works?", "color: red");
-		if (!isCacheable(request)) {
+		if (!isCacheable(request, this?.searchUrl)) {
 			return next.handle(request);
 		}
 
@@ -28,12 +32,10 @@ export class CachingInterceptor implements HttpInterceptor {
 	}
 }
 
-function isCacheable(req: HttpRequest<unknown>): boolean {
-	// todo add url filtering
-	return (
-		req.method === "GET"
-		// && -1 < req.url.indexOf(searchUrl)
-	);
+function isCacheable(req: HttpRequest<unknown>, searchUrl?: string): boolean {
+	return searchUrl
+		? req.method === "GET" && -1 < req.url.indexOf(searchUrl)
+		: req.method === "GET";
 }
 
 function sendRequestAndCache(
