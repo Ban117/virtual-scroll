@@ -1,0 +1,29 @@
+// more for testing sass lib + Nx
+@mixin app-hover($ignoreDisabled: false) {
+	@if $ignoreDisabled {
+		@include _app-hover {
+			@content;
+		}
+	} @else {
+		&:not([disabled]):not([readonly]) {
+			@include _app-hover {
+				@content;
+			}
+		}
+	}
+}
+
+@mixin _app-hover {
+	@media (pointer: fine) {
+		&:hover {
+			@content;
+		}
+	}
+	@media (hover: none) and (pointer: coarse) {
+		&:active {
+			@content;
+		}
+	}
+}
+
+$default-hover-color: #7b1fa2;

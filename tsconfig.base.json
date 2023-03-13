@@ -85,6 +85,7 @@
 			"@ban/web/shell/ui/layout": [
 				"libs/web/shell/ui/layout/src/index.ts"
 			],
+			"@ban/web/styles": ["libs/web/styles/src/index.ts"],
 			"@ban/web/users/data-access": [
 				"libs/web/users/data-access/src/index.ts"
 			],

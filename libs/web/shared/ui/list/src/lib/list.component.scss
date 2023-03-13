@@ -1,9 +1,15 @@
+@use "mixins" as mixins;
+
 .ban-list {
 	display: block;
 	$list-padding: 16px;
 
 	&__title {
 		padding: $list-padding;
+
+		@include mixins.app-hover {
+			color: mixins.$default-hover-color;
+		}
 	}
 
 	&__search {
