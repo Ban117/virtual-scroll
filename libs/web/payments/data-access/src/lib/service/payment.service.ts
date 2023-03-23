@@ -57,7 +57,7 @@ export class PaymentService implements EntityService<PaymentByStatus> {
 	private groupPaymentsByStatus(payments: Payment[]): PaymentByStatus[] {
 		const statuses = Object.values(PaymentStatus);
 
-		return statuses.map(status => {
+		return statuses.map<PaymentByStatus>(status => {
 			const filteredPayments = payments.filter(
 				payment => payment.status === status,
 			);
@@ -67,7 +67,7 @@ export class PaymentService implements EntityService<PaymentByStatus> {
 				status,
 				payments: filteredPayments,
 				count: filteredPayments.length,
-			} as PaymentByStatus;
+			};
 		});
 	}
 }
