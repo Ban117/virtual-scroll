@@ -1,25 +1,27 @@
 import { Entity } from "@ban/web/shared/data-access/models";
+import { ExtractTypeFromReadonlyArray } from "@ban/web/shared/utils";
 
-// todo consider replacing enum with type
-export enum PaymentStatus {
-	successful = "successful",
-	delivery_error = "delivery_error",
-	wrong_payslip = "wrong_payslip",
-	wrong_address = "wrong_address",
-	declined = "declined",
-}
+// TS enum replacement, similar to using a pojo with `as const` but wanted to
+// keep this as an array/iterable
+export const PAYMENT_STATUS = [
+	"successful",
+	"delivery_error",
+	"wrong_payslip",
+	"wrong_address",
+	"declined",
+] as const;
 
-export type PaymentStatusType = keyof typeof PaymentStatus;
+export type PaymentStatus = ExtractTypeFromReadonlyArray<typeof PAYMENT_STATUS>;
 
 export interface Payment extends Entity {
-	status: PaymentStatusType;
+	status: PaymentStatus;
 	receiver: string;
 	internalFieldA: string;
 	xYZRandomField: string;
 }
 
 export interface PaymentByStatus extends Entity {
-	status: PaymentStatusType;
+	status: PaymentStatus;
 	payments: Payment[];
 	count: number;
 }

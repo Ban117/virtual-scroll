@@ -18,7 +18,7 @@ import { usersRoutes } from "./users-shell.routes";
 		HttpClientModule,
 	],
 	providers: [
-		{ provide: SEARCH_URL, useValue: "start" },
+		{ provide: SEARCH_URL, useValue: "start" }, // could be more specific but we're only using it in Users
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: CachingInterceptor,

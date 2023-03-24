@@ -5,13 +5,15 @@ import { environment } from "@ban/web/shared/environments";
 import { Observable, map } from "rxjs";
 import { v4 as uuidv4 } from "uuid";
 
-import { PaymentByStatus, Payment, PaymentStatus } from "../models";
+import { PaymentByStatus, Payment, PAYMENT_STATUS } from "../models";
 
 @Injectable()
 export class PaymentService implements EntityService<PaymentByStatus> {
 	private readonly baseUrl = `http://localhost:${environment.jsonServerPort}/payments`;
 
 	private readonly searchField = "status" as keyof PaymentByStatus;
+
+	private readonly paymentStatus = PAYMENT_STATUS;
 
 	constructor(private http: HttpClient) {}
 
@@ -55,9 +57,7 @@ export class PaymentService implements EntityService<PaymentByStatus> {
 	}
 
 	private groupPaymentsByStatus(payments: Payment[]): PaymentByStatus[] {
-		const statuses = Object.values(PaymentStatus);
-
-		return statuses.map<PaymentByStatus>(status => {
+		return this.paymentStatus.map<PaymentByStatus>(status => {
 			const filteredPayments = payments.filter(
 				payment => payment.status === status,
 			);
