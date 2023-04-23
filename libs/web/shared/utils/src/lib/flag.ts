@@ -1,5 +1,5 @@
 // dev.to/jorik/country-code-to-flag-emoji-a21
-export function getFlagEmoji(countryCode: string | undefined) {
+export function getFlagEmoji(countryCode: string | undefined): string {
 	if (!countryCode) {
 		return "❌";
 	}

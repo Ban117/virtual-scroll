@@ -1,6 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { EntityService } from "@ban/web/shared/data-access/models";
+import {
+	BodyWithTotal,
+	EntityService,
+} from "@ban/web/shared/data-access/models";
 import { environment } from "@ban/web/shared/environments";
 import { extractBodyAndTotal } from "@ban/web/shared/utils";
 import { Observable, filter, map } from "rxjs";
@@ -36,7 +39,7 @@ export class UserService implements EntityService<User> {
 	getEntitiesByRange$(
 		start: number,
 		end: number,
-	): Observable<[User[], number]> {
+	): Observable<BodyWithTotal<User>> {
 		return this.http
 			.get<User[]>(`${this.baseUrl}?_start=${start}&_end=${end}`, {
 				observe: "response",

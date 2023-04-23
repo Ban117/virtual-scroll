@@ -1,11 +1,15 @@
 import { HttpResponse } from "@angular/common/http";
+import { BodyWithTotal, Entity } from "@ban/web/shared/data-access/models";
 
-export function extractBodyAndTotal<T>(
+export function extractBodyAndTotal<T extends Entity>(
 	response: HttpResponse<T[]>,
-): [T[], number] {
+): BodyWithTotal<T> {
 	const totalCount = response.headers
 		? response.headers.get("X-Total-Count") ?? 0
 		: 0;
 
-	return [response.body ?? [], +totalCount];
+	return {
+		body: response.body ?? [],
+		total: +totalCount,
+	};
 }

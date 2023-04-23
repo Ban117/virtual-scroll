@@ -1,6 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { EntityService } from "@ban/web/shared/data-access/models";
+import {
+	BodyWithTotal,
+	EntityService,
+} from "@ban/web/shared/data-access/models";
 import { environment } from "@ban/web/shared/environments";
 import { Observable, map } from "rxjs";
 import { v4 as uuidv4 } from "uuid";
@@ -44,14 +47,17 @@ export class PaymentService implements EntityService<PaymentByStatus> {
 	getEntitiesByRange$(
 		start: number,
 		end: number,
-	): Observable<[PaymentByStatus[], number]> {
+	): Observable<BodyWithTotal<PaymentByStatus>> {
 		return this.getAllPayments$().pipe(
 			map(payments => {
 				const groupedByStatus = this.groupPaymentsByStatus(
 					payments,
 				).slice(start, end);
 
-				return [groupedByStatus, groupedByStatus.length];
+				return {
+					body: groupedByStatus,
+					total: groupedByStatus.length,
+				};
 			}),
 		);
 	}

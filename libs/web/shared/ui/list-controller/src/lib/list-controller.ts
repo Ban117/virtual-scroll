@@ -108,9 +108,9 @@ export abstract class ListControllerBase<TItem extends Entity>
 		return this.service
 			.getEntitiesByRange$(offset, offset + this.batchSize)
 			.pipe(
-				tap(([, total]) => (this.totalItems = total)),
-				map(([items]) => {
-					return items.reduce((acc, curr) => {
+				tap(x => (this.totalItems = x.total)),
+				map(x => {
+					return x.body.reduce((acc, curr) => {
 						const id = curr.id;
 						return { ...acc, [id]: curr };
 					}, {});
