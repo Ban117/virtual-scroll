@@ -24,12 +24,6 @@ export class PaymentService implements EntityService<PaymentByStatus> {
 		return this.http.get<Payment[]>(this.baseUrl);
 	}
 
-	getPaymentsByPage$(page: number, limit: number): Observable<Payment[]> {
-		return this.http.get<Payment[]>(
-			`${this.baseUrl}?_page=${page}&_limit=${limit}`,
-		);
-	}
-
 	searchEntities$(term: string): Observable<PaymentByStatus[]> {
 		return this.getAllPayments$().pipe(
 			map(payments => {

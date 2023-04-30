@@ -16,16 +16,6 @@ export class CountryService implements EntityService<Country> {
 
 	private readonly baseUrl = `http://localhost:${environment.jsonServerPort}/countries`;
 
-	getAllCountries$(): Observable<Country[]> {
-		return this.http.get<Country[]>(this.baseUrl);
-	}
-
-	getCountriesByPage$(page: number, limit: number): Observable<Country[]> {
-		return this.http.get<Country[]>(
-			`${this.baseUrl}?_page=${page}&_limit=${limit}`,
-		);
-	}
-
 	searchEntities$(
 		term: string,
 		field?: keyof Country,

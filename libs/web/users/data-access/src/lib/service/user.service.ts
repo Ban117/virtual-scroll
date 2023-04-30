@@ -16,16 +16,6 @@ export class UserService implements EntityService<User> {
 
 	private http: HttpClient = inject(HttpClient);
 
-	getAllUsers$(): Observable<User[]> {
-		return this.http.get<User[]>(this.baseUrl);
-	}
-
-	getUsersByPage$(page: number, limit: number): Observable<User[]> {
-		return this.http.get<User[]>(
-			`${this.baseUrl}?_page=${page}&_limit=${limit}`,
-		);
-	}
-
 	searchEntities$(term: string, field?: keyof User): Observable<User[]> {
 		if (field) {
 			return this.http.get<User[]>(
