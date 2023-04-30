@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, OnDestroy } from "@angular/core";
+import { Injectable, OnDestroy, inject } from "@angular/core";
 import { Subject, takeUntil, tap } from "rxjs";
 
 interface Translation {
@@ -13,9 +13,12 @@ export class TranslationService implements OnDestroy {
 	readonly onTranslationChange$ = new Subject<void>();
 
 	private translations: Translation = {};
+
+	private httpClient: HttpClient = inject(HttpClient);
+
 	private readonly _destroy$ = new Subject<void>();
 
-	constructor(private httpClient: HttpClient) {
+	constructor() {
 		this.httpClient
 			.get<Translation>("./assets/translations.json")
 			.pipe(

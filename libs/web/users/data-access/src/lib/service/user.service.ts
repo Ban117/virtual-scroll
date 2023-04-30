@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import {
 	BodyWithTotal,
@@ -14,7 +14,7 @@ import { User } from "../models";
 export class UserService implements EntityService<User> {
 	private readonly baseUrl = `http://localhost:${environment.jsonServerPort}/users`;
 
-	constructor(private http: HttpClient) {}
+	private http: HttpClient = inject(HttpClient);
 
 	getAllUsers$(): Observable<User[]> {
 		return this.http.get<User[]>(this.baseUrl);

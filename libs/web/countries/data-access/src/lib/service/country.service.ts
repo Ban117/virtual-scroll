@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import {
 	BodyWithTotal,
@@ -12,9 +12,9 @@ import { Country } from "../models";
 
 @Injectable()
 export class CountryService implements EntityService<Country> {
-	private readonly baseUrl = `http://localhost:${environment.jsonServerPort}/countries`;
+	private http = inject(HttpClient);
 
-	constructor(private http: HttpClient) {}
+	private readonly baseUrl = `http://localhost:${environment.jsonServerPort}/countries`;
 
 	getAllCountries$(): Observable<Country[]> {
 		return this.http.get<Country[]>(this.baseUrl);

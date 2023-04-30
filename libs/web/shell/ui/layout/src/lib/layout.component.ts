@@ -2,6 +2,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	ViewEncapsulation,
+	inject,
 } from "@angular/core";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Observable, map, shareReplay } from "rxjs";
@@ -15,12 +16,12 @@ import { Observable, map, shareReplay } from "rxjs";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent {
+	private breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
+
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
 		.pipe(
 			map(result => result.matches),
 			shareReplay(),
 		);
-
-	constructor(private breakpointObserver: BreakpointObserver) {}
 }

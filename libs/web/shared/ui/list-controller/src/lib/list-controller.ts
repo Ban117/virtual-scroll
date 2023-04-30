@@ -1,4 +1,4 @@
-import { Directive, OnInit, Inject, Optional } from "@angular/core";
+import { Directive, OnInit, inject } from "@angular/core";
 import {
 	Entity,
 	EntityService,
@@ -46,11 +46,10 @@ export abstract class ListControllerBase<TItem extends Entity>
 		return this.searchTerm$.value === "";
 	}
 
-	constructor(
-		@Optional() // only optional so we can throw our own error
-		@Inject(ENTITY_SERVICE)
-		private service: EntityService<TItem>,
-	) {
+	private service: EntityService<TItem> =
+		inject<EntityService<TItem>>(ENTITY_SERVICE);
+
+	constructor() {
 		if (!this.service) {
 			throw new Error("Subclass must provide ENTITY_SERVICE!");
 		}

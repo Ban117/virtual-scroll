@@ -1,10 +1,10 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
-	Inject,
 	OnDestroy,
 	OnInit,
 	ViewEncapsulation,
+	inject,
 } from "@angular/core";
 import { PaymentByStatus, PaymentService } from "@ban/web/payments/data-access";
 import { ENTITY_SERVICE } from "@ban/web/shared/data-access/models";
@@ -42,18 +42,17 @@ export class PaymentListComponent
 
 	private readonly _destroy$ = new Subject<void>();
 
-	constructor(
-		@Inject(ENTITY_SERVICE) service: PaymentService,
-		private translationService: TranslationService,
-	) {
-		super(service);
+	private translationService: TranslationService = inject(TranslationService);
+
+	constructor() {
+		super();
 	}
 
 	override ngOnInit() {
 		super.ngOnInit();
 
-		// we have to trigger this on data change as the component is being
-		// recycled by `cdkVirtualFor`
+		// we have to trigger this on data change if using the template as it's being
+		// recycled by `cdkVirtualFor` and there is no @Input reference change
 		this.displayedItems$
 			.pipe(
 				tap(() => this.translationService.onTranslationChange$.next()),

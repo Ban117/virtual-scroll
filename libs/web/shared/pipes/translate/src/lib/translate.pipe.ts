@@ -3,6 +3,7 @@ import {
 	OnDestroy,
 	Pipe,
 	PipeTransform,
+	inject,
 } from "@angular/core";
 import { TranslationService } from "@ban/web/shared/data-access/translations";
 import { Subject, takeUntil, tap } from "rxjs";
@@ -13,13 +14,16 @@ import { Subject, takeUntil, tap } from "rxjs";
 })
 export class TranslatePipe implements PipeTransform, OnDestroy {
 	private markForTransform = true;
+
 	private value = "";
+
+	private translationService: TranslationService = inject(TranslationService);
+
+	private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+
 	private readonly _destroy$ = new Subject<void>();
 
-	constructor(
-		private translationService: TranslationService,
-		private cdr: ChangeDetectorRef,
-	) {
+	constructor() {
 		this.translationService.onTranslationChange$
 			.pipe(
 				tap(() => {

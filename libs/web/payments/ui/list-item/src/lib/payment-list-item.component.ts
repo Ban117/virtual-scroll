@@ -4,6 +4,7 @@ import {
 	HostBinding,
 	Input,
 	ViewEncapsulation,
+	inject,
 } from "@angular/core";
 import { PaymentByStatus } from "@ban/web/payments/data-access";
 import { TranslationService } from "@ban/web/shared/data-access/translations";
@@ -35,6 +36,5 @@ export class PaymentListItemComponent {
 	@Input() itemSize!: number;
 
 	private _payment!: PaymentByStatus;
-
-	constructor(private translationService: TranslationService) {}
+	private translationService: TranslationService = inject(TranslationService);
 }
