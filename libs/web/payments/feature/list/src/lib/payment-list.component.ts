@@ -34,9 +34,9 @@ export class PaymentListComponent
 	extends ListControllerBase<PaymentByStatus>
 	implements OnInit, OnDestroy
 {
-	itemSize = PAYMENT_ITEM_SIZE;
+	override itemSize = PAYMENT_ITEM_SIZE;
 
-	searchField: keyof PaymentByStatus = SEARCH_FIELD;
+	override searchField: keyof PaymentByStatus = SEARCH_FIELD;
 
 	readonly title = TITLE;
 

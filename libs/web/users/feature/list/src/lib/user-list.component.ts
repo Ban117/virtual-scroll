@@ -26,9 +26,9 @@ const TITLE = "Manage Users";
 	],
 })
 export class UserListComponent extends ListControllerBase<User> {
-	itemSize = USER_ITEM_SIZE;
+	override itemSize = USER_ITEM_SIZE;
 
-	searchField: keyof User = SEARCH_FIELD;
+	override searchField: keyof User = SEARCH_FIELD;
 
 	readonly title = TITLE;
 	offlineSearchFilter(item: User, search = ""): boolean {

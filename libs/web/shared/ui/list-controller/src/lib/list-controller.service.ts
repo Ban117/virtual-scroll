@@ -1,9 +1,4 @@
-import { Directive, OnInit, inject } from "@angular/core";
-import {
-	Entity,
-	EntityService,
-	ENTITY_SERVICE,
-} from "@ban/web/shared/data-access/models";
+import { Entity, EntityService } from "@ban/web/shared/data-access/models";
 import {
 	Subject,
 	BehaviorSubject,
@@ -20,42 +15,40 @@ import {
 	share,
 } from "rxjs";
 
-@Directive()
-export abstract class ListControllerBase<TItem extends Entity>
-	implements OnInit
-{
-	abstract itemSize: number;
+export type OfflineSearchFilter<TItem extends Entity> = (
+	item: TItem,
+	searchField: keyof TItem,
+	search: string,
+) => boolean;
 
-	abstract searchField: keyof TItem;
-
+export class ListControllerService<TItem extends Entity> {
 	reachedEnd = false;
 
 	searchTerm$ = new BehaviorSubject<string>("");
 
-	protected displayedItems$!: Observable<TItem[]>;
+	displayedItems$!: Observable<TItem[]>;
 
-	protected totalItems: number | undefined;
+	private totalItems: number | undefined;
 
-	protected batchSize = 50;
+	private batchSize = 50;
 
-	protected storedItems$!: Observable<TItem[]>;
+	private storedItems$!: Observable<TItem[]>;
 
-	protected get searchTermEmpty(): boolean {
+	private get searchTermEmpty(): boolean {
 		return this.searchTerm$.value === "";
 	}
 
 	private offset$ = new Subject<number>();
 
-	private entityService: EntityService<TItem> =
-		inject<EntityService<TItem>>(ENTITY_SERVICE);
-
-	constructor() {
+	constructor(
+		private searchField: keyof TItem,
+		private offlineSearchFilter: OfflineSearchFilter<TItem>,
+		private entityService: EntityService<TItem>,
+	) {
 		if (!this.entityService) {
-			throw new Error("Subclass must provide ENTITY_SERVICE!");
+			throw new Error("Must provide ENTITY_SERVICE!");
 		}
-	}
 
-	ngOnInit() {
 		this.storedItems$ = this.offset$.pipe(
 			distinctUntilChanged(),
 			filter(() => this.searchTermEmpty),
@@ -83,7 +76,11 @@ export abstract class ListControllerBase<TItem extends Entity>
 				if (this.reachedEnd) {
 					return of(
 						storedItems.filter(item =>
-							this.offlineSearchFilter(item, searchTerm),
+							this.offlineSearchFilter(
+								item,
+								this.searchField,
+								searchTerm,
+							),
 						),
 					);
 				} else {
@@ -97,13 +94,11 @@ export abstract class ListControllerBase<TItem extends Entity>
 		);
 	}
 
-	abstract offlineSearchFilter(item: TItem, search: string): boolean;
-
-	protected onOffsetChange(offest: number) {
+	onOffsetChange(offest: number) {
 		this.offset$.next(offest);
 	}
 
-	protected getBatch$(offset: number): Observable<Record<string, TItem>> {
+	getBatch$(offset: number): Observable<Record<string, TItem>> {
 		return this.entityService
 			.getEntitiesByRange$(offset, offset + this.batchSize)
 			.pipe(

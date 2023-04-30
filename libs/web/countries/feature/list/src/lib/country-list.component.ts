@@ -5,7 +5,7 @@ import {
 } from "@angular/core";
 import { Country, CountryService } from "@ban/web/countries/data-access";
 import { ENTITY_SERVICE } from "@ban/web/shared/data-access/models";
-import { ListControllerBase } from "@ban/web/shared/ui/list-controller";
+import { ListControllerService } from "@ban/web/shared/ui/list-controller";
 
 const COUNTRY_ITEM_SIZE = 60;
 const SEARCH_FIELD = "name";
@@ -23,30 +23,51 @@ const TITLE = "Manage Countries";
 			provide: ENTITY_SERVICE,
 			useClass: CountryService,
 		},
+		{
+			provide: ListControllerService<Country>,
+			useFactory: listControllerServiceFactory,
+			deps: [ENTITY_SERVICE],
+		},
 	],
 })
-export class CountryListComponent extends ListControllerBase<Country> {
-	itemSize = COUNTRY_ITEM_SIZE;
-
-	searchField: keyof Country = SEARCH_FIELD;
+export class CountryListComponent {
+	readonly itemSize = COUNTRY_ITEM_SIZE;
 
 	readonly title = TITLE;
 
-	offlineSearchFilter(item: Country, search = ""): boolean {
-		if (!search.length) {
-			return true;
-		}
+	constructor(public listController: ListControllerService<Country>) {}
+}
 
-		const itemField = item[this.searchField];
+// todo make generic and extract
+function listControllerServiceFactory(
+	entityService: CountryService,
+): ListControllerService<Country> {
+	return new ListControllerService(
+		SEARCH_FIELD,
+		offlineSearchFilter,
+		entityService,
+	);
+}
 
-		if (typeof itemField === "string") {
-			return itemField.toLowerCase().indexOf(search) > -1;
-		}
-
-		if (typeof itemField === "number") {
-			return itemField === +search;
-		}
-
-		return false;
+// todo
+function offlineSearchFilter(
+	item: Country,
+	searchField: keyof Country,
+	search = "",
+): boolean {
+	if (!search.length) {
+		return true;
 	}
+
+	const itemField = item[searchField];
+
+	if (typeof itemField === "string") {
+		return itemField.toLowerCase().indexOf(search) > -1;
+	}
+
+	if (typeof itemField === "number") {
+		return itemField === +search;
+	}
+
+	return false;
 }
