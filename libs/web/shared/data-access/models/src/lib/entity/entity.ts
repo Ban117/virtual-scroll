@@ -1,4 +1,3 @@
-import { InjectionToken } from "@angular/core";
 import { Observable } from "rxjs";
 
 export interface Entity {
@@ -12,10 +11,6 @@ export interface EntityService<T> {
 	): Observable<BodyWithTotal<T>>;
 	searchEntities$(term: string, field?: keyof T): Observable<T[]>;
 }
-
-export const ENTITY_SERVICE = new InjectionToken<EntityService<unknown>>(
-	"@stibo-ben/entity-service",
-);
 
 export type BodyWithTotal<T> = {
 	body: T[];

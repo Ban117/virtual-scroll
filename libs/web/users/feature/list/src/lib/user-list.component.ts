@@ -2,14 +2,35 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	ViewEncapsulation,
+	inject,
 } from "@angular/core";
-import { ENTITY_SERVICE } from "@ban/web/shared/data-access/models";
-import { ListControllerBase } from "@ban/web/shared/ui/list-controller";
+import {
+	ListControllerService,
+	listControllerFactory,
+} from "@ban/web/shared/data-access/list-controller";
 import { User, UserService } from "@ban/web/users/data-access";
 
 const USER_ITEM_SIZE = 90;
 const SEARCH_FIELD = "firstName";
 const TITLE = "Manage Users";
+
+function offlineSearchFilter(
+	item: User,
+	searchField: keyof User,
+	search = "",
+): boolean {
+	if (!search.length) {
+		return true;
+	}
+
+	const itemField = item[searchField];
+
+	if (typeof itemField === "string") {
+		return itemField.toLowerCase().indexOf(search) > -1;
+	}
+
+	return false;
+}
 
 @Component({
 	selector: "ban-user-list",
@@ -19,29 +40,23 @@ const TITLE = "Manage Users";
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [
+		UserService,
 		{
-			provide: ENTITY_SERVICE,
-			useClass: UserService,
+			provide: ListControllerService<User>,
+			useFactory: listControllerFactory(
+				SEARCH_FIELD,
+				offlineSearchFilter,
+			),
+			deps: [UserService],
 		},
 	],
 })
-export class UserListComponent extends ListControllerBase<User> {
-	override itemSize = USER_ITEM_SIZE;
-
-	override searchField: keyof User = SEARCH_FIELD;
+export class UserListComponent {
+	readonly itemSize = USER_ITEM_SIZE;
 
 	readonly title = TITLE;
-	offlineSearchFilter(item: User, search = ""): boolean {
-		if (!search.length) {
-			return true;
-		}
 
-		const itemField = item[this.searchField];
-
-		if (typeof itemField === "string") {
-			return itemField.toLowerCase().indexOf(search) > -1;
-		}
-
-		return false;
-	}
+	listController: ListControllerService<User> = inject(
+		ListControllerService<User>,
+	);
 }

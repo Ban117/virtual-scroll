@@ -46,6 +46,9 @@
 			"@ban/web/shared/data-access/caching": [
 				"libs/web/shared/data-access/caching/src/index.ts"
 			],
+			"@ban/web/shared/data-access/list-controller": [
+				"libs/web/shared/data-access/list-controller/src/index.ts"
+			],
 			"@ban/web/shared/data-access/models": [
 				"libs/web/shared/data-access/models/src/index.ts"
 			],
@@ -71,9 +74,6 @@
 				"libs/web/shared/ui/avatar/src/index.ts"
 			],
 			"@ban/web/shared/ui/list": ["libs/web/shared/ui/list/src/index.ts"],
-			"@ban/web/shared/ui/list-controller": [
-				"libs/web/shared/ui/list-controller/src/index.ts"
-			],
 			"@ban/web/shared/ui/list-item-template": [
 				"libs/web/shared/ui/list-item-template/src/index.ts"
 			],

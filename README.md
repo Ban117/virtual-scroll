@@ -34,3 +34,6 @@ A project I had done that I've now used to learn Nx. Totally overkill for a proj
 ## Data
 
 * Many fields in the countries array are duplicate, this was intentional as this is how the data was originally provided
+
+
+// todo look into `ngStyle` and rm `ngStyle`

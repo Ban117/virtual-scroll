@@ -4,7 +4,7 @@ export default {
 	preset: "../../../../../jest.preset.js",
 	setupFilesAfterEnv: ["<rootDir>/src/test-setup.ts"],
 	coverageDirectory:
-		"../../../../../coverage/libs/web/shared/ui/list-controller",
+		"../../../../../coverage/libs/web/shared/data-access/list-controller",
 	transform: {
 		"^.+\\.(ts|mjs|js|html)$": [
 			"jest-preset-angular",

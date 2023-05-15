@@ -3,10 +3,10 @@
 	showSearch
 	[itemSize]="itemSize"
 	[title]="title"
-	[reachedEnd]="reachedEnd"
-	[searchTerm$]="searchTerm$"
-	[items$]="displayedItems$"
-	(offsetChange)="onOffsetChange($event)"
+	[reachedEnd]="listController.reachedEnd"
+	[searchTerm$]="listController.searchTerm$"
+	[items$]="listController.displayedItems$"
+	(offsetChange)="listController.onOffsetChange($event)"
 >
 	<ng-template
 		banListItem
