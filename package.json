@@ -3,7 +3,8 @@
 	"version": "0.0.0",
 	"license": "MIT",
 	"scripts": {
-		"start": "nx run virtual-list:serve",
+		"ng": "nx",
+		"start": "nx serve",
 		"serve": "json-server --watch data.json --port 3001"
 	},
 	"private": true,
