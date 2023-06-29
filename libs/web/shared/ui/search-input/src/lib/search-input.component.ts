@@ -26,7 +26,7 @@ import {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchInputComponent implements AfterViewInit, OnDestroy {
-	@ViewChild("input", { static: false }) input!: ElementRef;
+	@ViewChild("input") input!: ElementRef;
 
 	@Input() searchTerm$!: BehaviorSubject<string>;
 
