@@ -31,6 +31,8 @@
 					[checked]="selectedItems.get(item.id)"
 					class="ban-list__checkbox"
 				></mat-checkbox>
+				<!-- example of a transplanted view, a special case of
+					embedded view https://courses.indepth.dev/angular/big-picture/operations -->
 				<ng-container
 					*ngTemplateOutlet="
 						itemTemplate || defaultTemplate;
