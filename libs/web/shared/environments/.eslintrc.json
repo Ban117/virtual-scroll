@@ -5,9 +5,7 @@
 		{
 			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
 			"rules": {
-				"@angular-eslint/no-host-metadata-property": [
-					"off"
-				]
+				"@angular-eslint/no-host-metadata-property": ["off"]
 			}
 		},
 		{
