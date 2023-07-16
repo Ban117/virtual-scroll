@@ -15,89 +15,75 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@ban/web/countries/data-access": [
-				"libs/web/countries/data-access/src/index.ts"
+			"@ban/countries/data-access": [
+				"libs/countries/data-access/src/index.ts"
 			],
-			"@ban/web/countries/feature/list": [
-				"libs/web/countries/feature/list/src/index.ts"
+			"@ban/countries/feature/list": [
+				"libs/countries/feature/list/src/index.ts"
 			],
-			"@ban/web/countries/feature/shell": [
-				"libs/web/countries/feature/shell/src/index.ts"
+			"@ban/countries/feature/shell": [
+				"libs/countries/feature/shell/src/index.ts"
 			],
-			"@ban/web/countries/ui/list-item": [
-				"libs/web/countries/ui/list-item/src/index.ts"
+			"@ban/countries/ui/list-item": [
+				"libs/countries/ui/list-item/src/index.ts"
 			],
-			"@ban/web/home/feature": ["libs/web/home/feature/src/index.ts"],
-			"@ban/web/not-found/feature": [
-				"libs/web/not-found/feature/src/index.ts"
+			"@ban/home/feature": ["libs/home/feature/src/index.ts"],
+			"@ban/not-found/feature": ["libs/not-found/feature/src/index.ts"],
+			"@ban/payments/data-access": [
+				"libs/payments/data-access/src/index.ts"
 			],
-			"@ban/web/payments/data-access": [
-				"libs/web/payments/data-access/src/index.ts"
+			"@ban/payments/feature/list": [
+				"libs/payments/feature/list/src/index.ts"
 			],
-			"@ban/web/payments/feature/list": [
-				"libs/web/payments/feature/list/src/index.ts"
+			"@ban/payments/feature/shell": [
+				"libs/payments/feature/shell/src/index.ts"
 			],
-			"@ban/web/payments/feature/shell": [
-				"libs/web/payments/feature/shell/src/index.ts"
+			"@ban/payments/ui/list-item": [
+				"libs/payments/ui/list-item/src/index.ts"
 			],
-			"@ban/web/payments/ui/list-item": [
-				"libs/web/payments/ui/list-item/src/index.ts"
+			"@ban/shared/data-access/caching": [
+				"libs/shared/data-access/caching/src/index.ts"
 			],
-			"@ban/web/shared/data-access/caching": [
-				"libs/web/shared/data-access/caching/src/index.ts"
+			"@ban/shared/data-access/list-controller": [
+				"libs/shared/data-access/list-controller/src/index.ts"
 			],
-			"@ban/web/shared/data-access/list-controller": [
-				"libs/web/shared/data-access/list-controller/src/index.ts"
+			"@ban/shared/data-access/models": [
+				"libs/shared/data-access/models/src/index.ts"
 			],
-			"@ban/web/shared/data-access/models": [
-				"libs/web/shared/data-access/models/src/index.ts"
+			"@ban/shared/data-access/translations": [
+				"libs/shared/data-access/translations/src/index.ts"
 			],
-			"@ban/web/shared/data-access/translations": [
-				"libs/web/shared/data-access/translations/src/index.ts"
+			"@ban/shared/environments": [
+				"libs/shared/environments/src/index.ts"
 			],
-			"@ban/web/shared/environments": [
-				"libs/web/shared/environments/src/index.ts"
+			"@ban/shared/pipes/calling-code": [
+				"libs/shared/pipes/calling-code/src/index.ts"
 			],
-			"@ban/web/shared/pipes/calling-code": [
-				"libs/web/shared/pipes/calling-code/src/index.ts"
+			"@ban/shared/pipes/flag": ["libs/shared/pipes/flag/src/index.ts"],
+			"@ban/shared/pipes/initials": [
+				"libs/shared/pipes/initials/src/index.ts"
 			],
-			"@ban/web/shared/pipes/flag": [
-				"libs/web/shared/pipes/flag/src/index.ts"
+			"@ban/shared/pipes/translate": [
+				"libs/shared/pipes/translate/src/index.ts"
 			],
-			"@ban/web/shared/pipes/initials": [
-				"libs/web/shared/pipes/initials/src/index.ts"
+			"@ban/shared/ui/avatar": ["libs/shared/ui/avatar/src/index.ts"],
+			"@ban/shared/ui/list": ["libs/shared/ui/list/src/index.ts"],
+			"@ban/shared/ui/list-item-template": [
+				"libs/shared/ui/list-item-template/src/index.ts"
 			],
-			"@ban/web/shared/pipes/translate": [
-				"libs/web/shared/pipes/translate/src/index.ts"
+			"@ban/shared/ui/search-input": [
+				"libs/shared/ui/search-input/src/index.ts"
 			],
-			"@ban/web/shared/ui/avatar": [
-				"libs/web/shared/ui/avatar/src/index.ts"
+			"@ban/shared/utils": ["libs/shared/utils/src/index.ts"],
+			"@ban/shell/feature": ["libs/shell/feature/src/index.ts"],
+			"@ban/shell/ui/layout": ["libs/shell/ui/layout/src/index.ts"],
+			"@ban/styles": ["libs/styles/src/index.ts"],
+			"@ban/users/data-access": ["libs/users/data-access/src/index.ts"],
+			"@ban/users/feature/list": ["libs/users/feature/list/src/index.ts"],
+			"@ban/users/feature/shell": [
+				"libs/users/feature/shell/src/index.ts"
 			],
-			"@ban/web/shared/ui/list": ["libs/web/shared/ui/list/src/index.ts"],
-			"@ban/web/shared/ui/list-item-template": [
-				"libs/web/shared/ui/list-item-template/src/index.ts"
-			],
-			"@ban/web/shared/ui/search-input": [
-				"libs/web/shared/ui/search-input/src/index.ts"
-			],
-			"@ban/web/shared/utils": ["libs/web/shared/utils/src/index.ts"],
-			"@ban/web/shell/feature": ["libs/web/shell/feature/src/index.ts"],
-			"@ban/web/shell/ui/layout": [
-				"libs/web/shell/ui/layout/src/index.ts"
-			],
-			"@ban/web/styles": ["libs/web/styles/src/index.ts"],
-			"@ban/web/users/data-access": [
-				"libs/web/users/data-access/src/index.ts"
-			],
-			"@ban/web/users/feature/list": [
-				"libs/web/users/feature/list/src/index.ts"
-			],
-			"@ban/web/users/feature/shell": [
-				"libs/web/users/feature/shell/src/index.ts"
-			],
-			"@ban/web/users/ui/list-item": [
-				"libs/web/users/ui/list-item/src/index.ts"
-			]
+			"@ban/users/ui/list-item": ["libs/users/ui/list-item/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

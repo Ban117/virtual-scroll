@@ -19,7 +19,7 @@
 					"apps/virtual-list/src/favicon.ico",
 					"apps/virtual-list/src/assets",
 					{
-						"input": "libs/web/not-found/feature/src/assets",
+						"input": "libs/not-found/feature/src/assets",
 						"glob": "**/*",
 						"output": "assets/not-found"
 					}
@@ -29,7 +29,7 @@
 					"apps/virtual-list/src/styles.scss"
 				],
 				"stylePreprocessorOptions": {
-					"includePaths": ["libs/web/styles/src/lib/"]
+					"includePaths": ["libs/styles/src/lib/"]
 				},
 				"allowedCommonJsDependencies": ["lottie-web"],
 				"scripts": []
@@ -59,8 +59,8 @@
 					"namedChunks": true,
 					"fileReplacements": [
 						{
-							"replace": "libs/web/shared/environments/src/lib/environment.ts",
-							"with": "libs/web/shared/environments/src/lib/environment.development.ts"
+							"replace": "libs/shared/environments/src/lib/environment.ts",
+							"with": "libs/shared/environments/src/lib/environment.development.ts"
 						}
 					]
 				}

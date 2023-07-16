@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { WebShellModule } from "@ban/web/shell/feature";
+import { WebShellModule } from "@ban/shell/feature";
 
 import { AppComponent } from "./app.component";
 
