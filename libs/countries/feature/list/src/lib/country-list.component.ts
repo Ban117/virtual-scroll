@@ -49,7 +49,28 @@ function offlineSearchFilter(
 		CountryListItemComponent,
 		ListItemTemplateDirective,
 	],
-	templateUrl: "./country-list.component.html",
+	template: `
+		<ban-list
+			class="ban-country-list__list"
+			showSearch
+			[itemSize]="itemSize"
+			[title]="title"
+			[reachedEnd]="listController.reachedEnd"
+			[items]="listController.displayedItems$ | async"
+			(offsetChange)="listController.onOffsetChange($event)"
+			(searchTermChange)="this.listController.searchTerm$.next($event)"
+		>
+			<ng-template
+				banListItem
+				let-country
+			>
+				<ban-country-list-item
+					[country]="country"
+					[itemSize]="itemSize"
+				/>
+			</ng-template>
+		</ban-list>
+	`,
 	styleUrls: ["./country-list.component.scss"],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,

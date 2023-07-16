@@ -7,9 +7,9 @@
 	</h3>
 
 	<ban-search-input
-		*ngIf="showSearch && searchTerm$"
-		[searchTerm$]="searchTerm$"
+		*ngIf="showSearch"
 		class="ban-list__search"
+		(searchTermChange)="searchTermChange.emit($event)"
 	></ban-search-input>
 
 	<cdk-virtual-scroll-viewport
@@ -17,7 +17,7 @@
 		[itemSize]="itemSize"
 		(scrolledIndexChange)="onScrolledIndexChange()"
 	>
-		<ng-container *ngIf="items$ | async as items">
+		<ng-container *ngIf="items">
 			<ng-container *ngIf="!items?.length">
 				<div class="ban-list__no-items">No items found!</div>
 			</ng-container>

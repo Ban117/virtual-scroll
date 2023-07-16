@@ -23,8 +23,6 @@ import { Entity } from "@ban/shared/data-access/models";
 import { ListItemTemplateDirective } from "@ban/shared/ui/list-item-template";
 import { SearchInputComponent } from "@ban/shared/ui/search-input";
 
-import { Observable, BehaviorSubject } from "rxjs";
-
 @Component({
 	selector: "ban-list",
 	host: { class: "ban-list" },
@@ -63,13 +61,13 @@ export class ListComponent<TItem extends Entity> {
 		this._showSearch = coerceBooleanProperty(value);
 	}
 
-	@Input() items$: Observable<TItem[]> | undefined;
-
-	@Input() searchTerm$: BehaviorSubject<string> | undefined;
+	@Input() items?: TItem[] | null;
 
 	@Input() reachedEnd: boolean | undefined;
 
 	@Output() readonly offsetChange = new EventEmitter<number>();
+
+	@Output() readonly searchTermChange = new EventEmitter<string>();
 
 	selectedItems: Map<string, boolean> = new Map();
 

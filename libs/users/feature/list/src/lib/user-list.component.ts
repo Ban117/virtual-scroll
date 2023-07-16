@@ -52,7 +52,28 @@ function offlineSearchFilter(
 		UserListItemComponent,
 		ListItemTemplateDirective,
 	],
-	templateUrl: "./user-list.component.html",
+	template: `
+		<ban-list
+			class="ban-user-list__list"
+			showSearch
+			[itemSize]="itemSize"
+			[title]="title"
+			[reachedEnd]="listController.reachedEnd"
+			[items]="listController.displayedItems$ | async"
+			(offsetChange)="listController.onOffsetChange($event)"
+			(searchTermChange)="this.listController.searchTerm$.next($event)"
+		>
+			<ng-template
+				banListItem
+				let-user
+			>
+				<ban-user-list-item
+					[user]="user"
+					[itemSize]="itemSize"
+				/>
+			</ng-template>
+		</ban-list>
+	`,
 	styleUrls: ["./user-list.component.scss"],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,

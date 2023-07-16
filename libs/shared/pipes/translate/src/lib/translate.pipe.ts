@@ -1,19 +1,14 @@
-import {
-	ChangeDetectorRef,
-	OnDestroy,
-	Pipe,
-	PipeTransform,
-	inject,
-} from "@angular/core";
+import { ChangeDetectorRef, Pipe, PipeTransform, inject } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { TranslationService } from "@ban/shared/data-access/translations";
-import { Subject, takeUntil, tap } from "rxjs";
+import { tap } from "rxjs";
 
 @Pipe({
 	name: "translate",
 	pure: false,
 	standalone: true,
 })
-export class TranslatePipe implements PipeTransform, OnDestroy {
+export class TranslatePipe implements PipeTransform {
 	private markForTransform = true;
 
 	private value = "";
@@ -22,8 +17,6 @@ export class TranslatePipe implements PipeTransform, OnDestroy {
 
 	private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-	private readonly _destroy$ = new Subject<void>();
-
 	constructor() {
 		this.translationService.onTranslationChange$
 			.pipe(
@@ -31,7 +24,7 @@ export class TranslatePipe implements PipeTransform, OnDestroy {
 					this.markForTransform = true;
 					this.cdr.markForCheck();
 				}),
-				takeUntil(this._destroy$),
+				takeUntilDestroyed(),
 			)
 			.subscribe();
 	}
@@ -44,10 +37,5 @@ export class TranslatePipe implements PipeTransform, OnDestroy {
 		this.value = this.translationService.getTranslation(key);
 		this.markForTransform = false;
 		return this.value;
-	}
-
-	ngOnDestroy() {
-		this._destroy$.next();
-		this._destroy$.complete();
 	}
 }

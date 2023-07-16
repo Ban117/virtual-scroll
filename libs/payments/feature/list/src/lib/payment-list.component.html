@@ -4,9 +4,9 @@
 	[itemSize]="itemSize"
 	[title]="title"
 	[reachedEnd]="listController.reachedEnd"
-	[searchTerm$]="listController.searchTerm$"
-	[items$]="listController.displayedItems$"
+	[items]="listController.displayedItems$ | async"
 	(offsetChange)="listController.onOffsetChange($event)"
+	(searchTermChange)="this.listController.searchTerm$.next($event)"
 >
 	<ng-template
 		[banListItem]="(listController.displayedItems$ | async)!"

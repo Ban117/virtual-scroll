@@ -39,19 +39,58 @@ export class ListControllerService<TItem extends Entity> {
 
 	searchTerm$ = new BehaviorSubject<string>("");
 
-	displayedItems$!: Observable<TItem[]>;
-
 	private totalItems: number | undefined;
 
 	private batchSize = 50;
 
-	private storedItems$!: Observable<TItem[]>;
+	private offset$ = new Subject<number>();
+
+	private storedItems$ = this.offset$.pipe(
+		distinctUntilChanged(),
+		filter(() => this.searchTermEmpty),
+		mergeMap(offset => this.getBatch$(offset)),
+		scan((acc, batch) => {
+			return { ...acc, ...batch };
+		}, {} as Record<string, TItem>),
+		map(v => Object.values(v)),
+		tap(storedItems => {
+			if (this.totalItems && storedItems.length >= this.totalItems) {
+				this.reachedEnd = true;
+			}
+		}),
+	);
+
+	displayedItems$ = combineLatest([
+		this.storedItems$,
+		this.searchTerm$.pipe(distinctUntilChanged()),
+	]).pipe(
+		switchMap(([storedItems, searchTerm]) => {
+			if (!searchTerm) {
+				return of(storedItems);
+			}
+
+			if (this.reachedEnd) {
+				return of(
+					storedItems.filter(item =>
+						this.offlineSearchFilter(
+							item,
+							this.searchField,
+							searchTerm,
+						),
+					),
+				);
+			}
+			return this.entityService.searchEntities$(
+				searchTerm,
+				this.searchField,
+			);
+		}),
+		share(), // needed if we use the `ListItemTemplateDirective`
+	);
 
 	private get searchTermEmpty(): boolean {
 		return this.searchTerm$.value === "";
 	}
-
-	private offset$ = new Subject<number>();
 
 	constructor(
 		private searchField: keyof TItem,
@@ -61,50 +100,6 @@ export class ListControllerService<TItem extends Entity> {
 		if (!this.entityService) {
 			throw new Error("Must provide ENTITY_SERVICE!");
 		}
-
-		this.storedItems$ = this.offset$.pipe(
-			distinctUntilChanged(),
-			filter(() => this.searchTermEmpty),
-			mergeMap(offset => this.getBatch$(offset)),
-			scan((acc, batch) => {
-				return { ...acc, ...batch };
-			}, {} as Record<string, TItem>),
-			map(v => Object.values(v)),
-			tap(storedItems => {
-				if (this.totalItems && storedItems.length >= this.totalItems) {
-					this.reachedEnd = true;
-				}
-			}),
-		);
-
-		this.displayedItems$ = combineLatest([
-			this.storedItems$,
-			this.searchTerm$.pipe(distinctUntilChanged()),
-		]).pipe(
-			switchMap(([storedItems, searchTerm]) => {
-				if (!searchTerm) {
-					return of(storedItems);
-				}
-
-				if (this.reachedEnd) {
-					return of(
-						storedItems.filter(item =>
-							this.offlineSearchFilter(
-								item,
-								this.searchField,
-								searchTerm,
-							),
-						),
-					);
-				} else {
-					return this.entityService.searchEntities$(
-						searchTerm,
-						this.searchField,
-					);
-				}
-			}),
-			share(), // needed if we use the `ListItemTemplateDirective`
-		);
 	}
 
 	onOffsetChange(offest: number) {
