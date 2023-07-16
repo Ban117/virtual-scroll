@@ -29,9 +29,7 @@
 					"apps/virtual-list/src/styles.scss"
 				],
 				"stylePreprocessorOptions": {
-					"includePaths": [
-						"libs/web/styles/src/lib/"
-					]
+					"includePaths": ["libs/web/styles/src/lib/"]
 				},
 				"allowedCommonJsDependencies": ["lottie-web"],
 				"scripts": []
@@ -89,7 +87,7 @@
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": [
