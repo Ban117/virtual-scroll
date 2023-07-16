@@ -9,7 +9,9 @@ import {
 	Breakpoints,
 	LayoutModule,
 } from "@angular/cdk/layout";
-import { Observable, map, shareReplay } from "rxjs";
+import { Observable, map } from "rxjs";
+import { VarDirective } from "@ban/shared/ui/var-directive";
+
 import { CommonModule } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
@@ -30,6 +32,7 @@ import { RouterModule } from "@angular/router";
 		MatButtonModule,
 		MatIconModule,
 		MatListModule,
+		VarDirective,
 	],
 	templateUrl: "./layout.component.html",
 	styleUrls: ["./layout.component.scss"],
@@ -42,8 +45,5 @@ export class LayoutComponent {
 
 	isHandset$: Observable<boolean> = this.breakpointObserver
 		.observe(Breakpoints.Handset)
-		.pipe(
-			map(result => result.matches),
-			shareReplay(),
-		);
+		.pipe(map(result => result.matches));
 }

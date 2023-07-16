@@ -1,11 +1,14 @@
-<mat-sidenav-container class="ban-layout__sidenav-container">
+<mat-sidenav-container
+	*banVarDirective="isHandset$ | async; let isHandset"
+	class="ban-layout__sidenav-container"
+>
 	<mat-sidenav
 		#drawer
 		class="ban-layout__sidenav"
 		fixedInViewport
-		[attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-		[mode]="(isHandset$ | async) ? 'over' : 'side'"
-		[opened]="(isHandset$ | async) === false"
+		[attr.role]="isHandset ? 'dialog' : 'navigation'"
+		[mode]="isHandset ? 'over' : 'side'"
+		[opened]="isHandset === false"
 	>
 		<mat-toolbar>Menu</mat-toolbar>
 		<mat-nav-list>
@@ -34,7 +37,7 @@
 	<mat-sidenav-content>
 		<mat-toolbar color="primary">
 			<button
-				*ngIf="isHandset$ | async"
+				*ngIf="isHandset"
 				type="button"
 				aria-label="Toggle sidenav"
 				mat-icon-button

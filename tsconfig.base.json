@@ -68,6 +68,9 @@
 			"@ban/shared/ui/search-input": [
 				"libs/shared/ui/search-input/src/index.ts"
 			],
+			"@ban/shared/ui/var-directive": [
+				"libs/shared/ui/var-directive/src/index.ts"
+			],
 			"@ban/shared/utils": ["libs/shared/utils/src/index.ts"],
 			"@ban/shell/ui/layout": ["libs/shell/ui/layout/src/index.ts"],
 			"@ban/styles": ["libs/styles/src/index.ts"],

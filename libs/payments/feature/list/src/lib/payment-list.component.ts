@@ -18,6 +18,7 @@ import { ListItemTemplateDirective } from "@ban/shared/ui/list-item-template";
 import { TranslatePipe } from "@ban/shared/pipes/translate";
 import { CommonModule } from "@angular/common";
 import { PaymentListItemComponent } from "@ban/payments/ui/list-item";
+import { VarDirective } from "@ban/shared/ui/var-directive";
 
 const PAYMENT_ITEM_SIZE = 60;
 const SEARCH_FIELD = "status";
@@ -54,6 +55,7 @@ function offlineSearchFilter(
 		PaymentListItemComponent,
 		ListItemTemplateDirective,
 		TranslatePipe,
+		VarDirective,
 	],
 	templateUrl: "./payment-list.component.html",
 	styleUrls: ["./payment-list.component.scss"],

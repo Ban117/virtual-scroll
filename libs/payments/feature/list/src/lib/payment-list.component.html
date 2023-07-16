@@ -1,15 +1,19 @@
 <ban-list
+	*banVarDirective="
+		listController.displayedItems$ | async;
+		let displayedItems
+	"
 	class="ban-payment-list__list"
 	showSearch
 	[itemSize]="itemSize"
 	[title]="title"
 	[reachedEnd]="listController.reachedEnd"
-	[items]="listController.displayedItems$ | async"
+	[items]="displayedItems"
 	(offsetChange)="listController.onOffsetChange($event)"
 	(searchTermChange)="this.listController.searchTerm$.next($event)"
 >
 	<ng-template
-		[banListItem]="(listController.displayedItems$ | async)!"
+		[banListItem]="displayedItems!"
 		let-payment
 	>
 		<!-- *** DEMO template typechecking *** -->
