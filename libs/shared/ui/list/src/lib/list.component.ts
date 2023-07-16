@@ -1,4 +1,3 @@
-import { BooleanInput, coerceBooleanProperty } from "@angular/cdk/coercion";
 import {
 	CdkVirtualScrollViewport,
 	ScrollingModule,
@@ -14,6 +13,7 @@ import {
 	TemplateRef,
 	ViewChild,
 	ViewEncapsulation,
+	booleanAttribute,
 } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -43,23 +43,17 @@ import { SearchInputComponent } from "@ban/shared/ui/search-input";
 	standalone: true,
 })
 export class ListComponent<TItem extends Entity> {
-	@ContentChild(ListItemTemplateDirective, { read: TemplateRef })
+	@ContentChild(ListItemTemplateDirective, { read: TemplateRef<TItem> })
 	itemTemplate: TemplateRef<TItem> | undefined;
 
-	@ViewChild(CdkVirtualScrollViewport, { static: true })
-	viewport!: CdkVirtualScrollViewport;
+	@ViewChild(CdkVirtualScrollViewport) viewport!: CdkVirtualScrollViewport;
 
 	@Input() title: string | undefined;
 
 	@Input() itemSize!: number;
 
-	@Input()
-	get showSearch(): boolean {
-		return this._showSearch;
-	}
-	set showSearch(value: BooleanInput) {
-		this._showSearch = coerceBooleanProperty(value);
-	}
+	@Input({ transform: booleanAttribute }) showSearch: boolean | string =
+		false;
 
 	@Input() items?: TItem[] | null;
 
@@ -69,9 +63,7 @@ export class ListComponent<TItem extends Entity> {
 
 	@Output() readonly searchTermChange = new EventEmitter<string>();
 
-	selectedItems: Map<string, boolean> = new Map();
-
-	private _showSearch = false;
+	selectedItems = new Map<string, boolean>();
 
 	onScrolledIndexChange() {
 		if (this.reachedEnd) {
