@@ -1,1 +1,1 @@
-export * from "./lib/initials-pipe.module";
+export { InitialsPipe } from "./lib/initials.pipe";

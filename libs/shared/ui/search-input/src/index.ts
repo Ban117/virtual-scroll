@@ -1,1 +1,1 @@
-export * from "./lib/search-input.module";
+export { SearchInputComponent } from "./lib/search-input.component";

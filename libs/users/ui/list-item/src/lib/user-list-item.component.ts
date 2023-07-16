@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
 	ChangeDetectionStrategy,
 	Component,
@@ -5,15 +6,18 @@ import {
 	OnInit,
 	ViewEncapsulation,
 } from "@angular/core";
+import { AvatarComponent } from "@ban/shared/ui/avatar";
 import { User } from "@ban/users/data-access";
 
 @Component({
 	selector: "ban-user-list-item",
 	host: { class: "ban-user-list-item" },
+	imports: [CommonModule, AvatarComponent],
 	templateUrl: "./user-list-item.component.html",
 	styleUrls: ["./user-list-item.component.scss"],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
 })
 export class UserListItemComponent implements OnInit {
 	@Input() user!: User;

@@ -1,1 +1,1 @@
-export * from "./lib/translate-pipe.module";
+export { TranslatePipe } from "./lib/translate.pipe";

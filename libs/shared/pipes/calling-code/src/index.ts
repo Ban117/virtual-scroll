@@ -1,1 +1,1 @@
-export * from "./lib/calling-code-pipe.module";
+export { CallingCodePipe } from "./lib/calling-code.pipe";

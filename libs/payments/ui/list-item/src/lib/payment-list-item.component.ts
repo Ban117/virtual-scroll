@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
 	ChangeDetectionStrategy,
 	Component,
@@ -8,14 +9,17 @@ import {
 } from "@angular/core";
 import { PaymentByStatus } from "@ban/payments/data-access";
 import { TranslationService } from "@ban/shared/data-access/translations";
+import { TranslatePipe } from "@ban/shared/pipes/translate";
 
 @Component({
 	selector: "ban-payment-list-item",
 	host: { class: "ban-payment-list-item" },
+	imports: [CommonModule, TranslatePipe],
 	templateUrl: "./payment-list-item.component.html",
 	styleUrls: ["./payment-list-item.component.scss"],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
 })
 export class PaymentListItemComponent {
 	@HostBinding("style.height.px") get height() {

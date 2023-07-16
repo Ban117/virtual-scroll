@@ -1,1 +1,1 @@
-export * from "./lib/not-found.module";
+export { NotFoundComponent } from "./lib/not-found.component";

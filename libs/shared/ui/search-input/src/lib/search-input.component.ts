@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
 	AfterViewInit,
 	ChangeDetectionStrategy,
@@ -8,6 +9,10 @@ import {
 	ViewChild,
 	ViewEncapsulation,
 } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
+import { MatInputModule } from "@angular/material/input";
 import {
 	BehaviorSubject,
 	Subject,
@@ -20,10 +25,18 @@ import {
 @Component({
 	selector: "ban-search-input",
 	host: { class: "ban-search-input" },
+	imports: [
+		CommonModule,
+		MatInputModule,
+		MatFormFieldModule,
+		MatButtonModule,
+		MatIconModule,
+	],
 	templateUrl: "./search-input.component.html",
 	styleUrls: ["./search-input.component.scss"],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
 })
 export class SearchInputComponent implements AfterViewInit, OnDestroy {
 	@ViewChild("input") input!: ElementRef;

@@ -11,6 +11,7 @@ import { Subject, takeUntil, tap } from "rxjs";
 @Pipe({
 	name: "translate",
 	pure: false,
+	standalone: true,
 })
 export class TranslatePipe implements PipeTransform, OnDestroy {
 	private markForTransform = true;

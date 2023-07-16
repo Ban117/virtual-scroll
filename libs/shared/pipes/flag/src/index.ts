@@ -1,1 +1,1 @@
-export * from "./lib/flag-pipe.module";
+export { FlagPipe } from "./lib/flag.pipe";

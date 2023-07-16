@@ -3,6 +3,7 @@ import { CALLING_CODE } from "./consts";
 
 @Pipe({
 	name: "callingCode",
+	standalone: true,
 })
 export class CallingCodePipe implements PipeTransform {
 	private codes = CALLING_CODE;

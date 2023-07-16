@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
 	ChangeDetectionStrategy,
 	Component,
@@ -8,7 +9,16 @@ import {
 	ListControllerService,
 	listControllerFactory,
 } from "@ban/shared/data-access/list-controller";
+import { ListComponent } from "@ban/shared/ui/list";
+import { ListItemTemplateDirective } from "@ban/shared/ui/list-item-template";
 import { User, UserService } from "@ban/users/data-access";
+import { UserListItemComponent } from "@ban/users/ui/list-item";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+
+import {
+	CachingInterceptor,
+	SEARCH_URL,
+} from "@ban/shared/data-access/caching";
 
 const USER_ITEM_SIZE = 90;
 const SEARCH_FIELD = "firstName";
@@ -35,11 +45,24 @@ function offlineSearchFilter(
 @Component({
 	selector: "ban-user-list",
 	host: { class: "ban-user-list" },
+	imports: [
+		CommonModule,
+		HttpClientModule,
+		ListComponent,
+		UserListItemComponent,
+		ListItemTemplateDirective,
+	],
 	templateUrl: "./user-list.component.html",
 	styleUrls: ["./user-list.component.scss"],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [
+		{ provide: SEARCH_URL, useValue: "start" }, // could be more specific but we're only using it in Users
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: CachingInterceptor,
+			multi: true,
+		},
 		UserService,
 		{
 			provide: ListControllerService<User>,
@@ -50,6 +73,7 @@ function offlineSearchFilter(
 			deps: [UserService],
 		},
 	],
+	standalone: true,
 })
 export class UserListComponent {
 	readonly itemSize = USER_ITEM_SIZE;

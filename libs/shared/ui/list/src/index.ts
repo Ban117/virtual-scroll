@@ -1,1 +1,1 @@
-export * from "./lib/list.module";
+export { ListComponent } from "./lib/list.component";

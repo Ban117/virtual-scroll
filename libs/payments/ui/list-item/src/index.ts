@@ -1,1 +1,1 @@
-export * from "./lib/payment-list-item.module";
+export { PaymentListItemComponent } from "./lib/payment-list-item.component";

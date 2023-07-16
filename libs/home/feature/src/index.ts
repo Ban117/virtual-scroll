@@ -1,1 +1,1 @@
-export * from "./lib/web-home.module";
+export { HomeComponent } from "./lib/home.component";

@@ -1,1 +1,1 @@
-export * from "./lib/avatar.module";
+export { AvatarComponent } from "./lib/avatar.component";

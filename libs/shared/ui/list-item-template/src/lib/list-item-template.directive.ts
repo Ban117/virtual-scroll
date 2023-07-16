@@ -7,6 +7,7 @@ interface ListItemTemplateContext<TItem extends Entity> {
 
 @Directive({
 	selector: "ng-template[banListItem]",
+	standalone: true,
 })
 export class ListItemTemplateDirective<TItem extends Entity> {
 	@Input("banListItem") items!: TItem[] | "";

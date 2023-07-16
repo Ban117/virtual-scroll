@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
 	ChangeDetectionStrategy,
 	Component,
@@ -5,10 +6,13 @@ import {
 	inject,
 } from "@angular/core";
 import { Country, CountryService } from "@ban/countries/data-access";
+import { CountryListItemComponent } from "@ban/countries/ui/list-item";
 import {
 	ListControllerService,
 	listControllerFactory,
 } from "@ban/shared/data-access/list-controller";
+import { ListComponent } from "@ban/shared/ui/list";
+import { ListItemTemplateDirective } from "@ban/shared/ui/list-item-template";
 
 const COUNTRY_ITEM_SIZE = 60;
 const SEARCH_FIELD = "name";
@@ -39,6 +43,12 @@ function offlineSearchFilter(
 @Component({
 	selector: "ban-country-list",
 	host: { class: "ban-country-list" },
+	imports: [
+		CommonModule,
+		ListComponent,
+		CountryListItemComponent,
+		ListItemTemplateDirective,
+	],
 	templateUrl: "./country-list.component.html",
 	styleUrls: ["./country-list.component.scss"],
 	encapsulation: ViewEncapsulation.None,
@@ -54,6 +64,7 @@ function offlineSearchFilter(
 			deps: [CountryService],
 		},
 	],
+	standalone: true,
 })
 export class CountryListComponent {
 	readonly itemSize = COUNTRY_ITEM_SIZE;

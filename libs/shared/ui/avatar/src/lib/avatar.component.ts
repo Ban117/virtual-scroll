@@ -1,18 +1,22 @@
+import { CommonModule } from "@angular/common";
 import {
 	ChangeDetectionStrategy,
 	Component,
 	Input,
 	ViewEncapsulation,
 } from "@angular/core";
+import { InitialsPipe } from "@ban/shared/pipes/initials";
 import { mapFirstNameToHexColor } from "@ban/shared/utils";
 
 @Component({
 	selector: "ban-avatar",
 	host: { class: "ban-avatar" },
+	imports: [CommonModule, InitialsPipe],
 	templateUrl: "./avatar.component.html",
 	styleUrls: ["./avatar.component.scss"],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
 })
 export class AvatarComponent {
 	@Input()

@@ -13,6 +13,11 @@ import {
 	listControllerFactory,
 } from "@ban/shared/data-access/list-controller";
 import { Subject, tap, takeUntil } from "rxjs";
+import { ListComponent } from "@ban/shared/ui/list";
+import { ListItemTemplateDirective } from "@ban/shared/ui/list-item-template";
+import { TranslatePipe } from "@ban/shared/pipes/translate";
+import { CommonModule } from "@angular/common";
+import { PaymentListItemComponent } from "@ban/payments/ui/list-item";
 
 const PAYMENT_ITEM_SIZE = 60;
 const SEARCH_FIELD = "status";
@@ -43,6 +48,13 @@ function offlineSearchFilter(
 @Component({
 	selector: "ban-payment-list",
 	host: { class: "ban-payment-list" },
+	imports: [
+		CommonModule,
+		ListComponent,
+		PaymentListItemComponent,
+		ListItemTemplateDirective,
+		TranslatePipe,
+	],
 	templateUrl: "./payment-list.component.html",
 	styleUrls: ["./payment-list.component.scss"],
 	encapsulation: ViewEncapsulation.None,
@@ -58,6 +70,7 @@ function offlineSearchFilter(
 			deps: [PaymentService],
 		},
 	],
+	standalone: true,
 })
 export class PaymentListComponent implements OnInit, OnDestroy {
 	readonly itemSize = PAYMENT_ITEM_SIZE;

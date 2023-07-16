@@ -1,2 +1,1 @@
-export * from "./lib/payments-list.module";
-export * from "./lib/payment-list.component";
+export { PaymentListComponent } from "./lib/payment-list.component";

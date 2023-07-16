@@ -1,1 +1,1 @@
-export * from "./lib/user-list-item.module";
+export { UserListItemComponent } from "./lib/user-list-item.component";

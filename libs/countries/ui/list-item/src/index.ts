@@ -1,1 +1,1 @@
-export * from "./lib/country-list-item.module";
+export { CountryListItemComponent } from "./lib/country-list-item.component";

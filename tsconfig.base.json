@@ -21,9 +21,6 @@
 			"@ban/countries/feature/list": [
 				"libs/countries/feature/list/src/index.ts"
 			],
-			"@ban/countries/feature/shell": [
-				"libs/countries/feature/shell/src/index.ts"
-			],
 			"@ban/countries/ui/list-item": [
 				"libs/countries/ui/list-item/src/index.ts"
 			],
@@ -34,9 +31,6 @@
 			],
 			"@ban/payments/feature/list": [
 				"libs/payments/feature/list/src/index.ts"
-			],
-			"@ban/payments/feature/shell": [
-				"libs/payments/feature/shell/src/index.ts"
 			],
 			"@ban/payments/ui/list-item": [
 				"libs/payments/ui/list-item/src/index.ts"
@@ -75,14 +69,10 @@
 				"libs/shared/ui/search-input/src/index.ts"
 			],
 			"@ban/shared/utils": ["libs/shared/utils/src/index.ts"],
-			"@ban/shell/feature": ["libs/shell/feature/src/index.ts"],
 			"@ban/shell/ui/layout": ["libs/shell/ui/layout/src/index.ts"],
 			"@ban/styles": ["libs/styles/src/index.ts"],
 			"@ban/users/data-access": ["libs/users/data-access/src/index.ts"],
 			"@ban/users/feature/list": ["libs/users/feature/list/src/index.ts"],
-			"@ban/users/feature/shell": [
-				"libs/users/feature/shell/src/index.ts"
-			],
 			"@ban/users/ui/list-item": ["libs/users/ui/list-item/src/index.ts"]
 		}
 	},
