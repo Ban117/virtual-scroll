@@ -37,7 +37,7 @@ export class PaymentListItemComponent {
 		this.translationService.onTranslationChange$.next();
 	}
 
-	@Input() itemSize!: number;
+	@Input({ required: true }) itemSize!: number;
 
 	private _payment!: PaymentByStatus;
 	private translationService: TranslationService = inject(TranslationService);

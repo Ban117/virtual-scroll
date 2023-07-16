@@ -50,7 +50,7 @@ export class ListComponent<TItem extends Entity> {
 
 	@Input() title: string | undefined;
 
-	@Input() itemSize!: number;
+	@Input({ required: true }) itemSize!: number;
 
 	@Input({ transform: booleanAttribute }) showSearch: boolean | string =
 		false;

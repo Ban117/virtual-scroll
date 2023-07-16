@@ -20,9 +20,9 @@ import { User } from "@ban/users/data-access";
 	standalone: true,
 })
 export class UserListItemComponent implements OnInit {
-	@Input() user!: User;
+	@Input({ required: true }) user!: User;
 
-	@Input() itemSize!: number;
+	@Input({ required: true }) itemSize!: number;
 
 	avatarSize!: number;
 

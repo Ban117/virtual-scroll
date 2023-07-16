@@ -25,7 +25,7 @@ export class CountryListItemComponent {
 		return this.itemSize;
 	}
 
-	@Input() country!: Country;
+	@Input({ required: true }) country!: Country;
 
-	@Input() itemSize!: number;
+	@Input({ required: true }) itemSize!: number;
 }
