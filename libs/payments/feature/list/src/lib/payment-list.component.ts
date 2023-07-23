@@ -1,7 +1,7 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
-	OnDestroy,
+	DestroyRef,
 	OnInit,
 	ViewEncapsulation,
 	inject,
@@ -12,13 +12,14 @@ import {
 	ListControllerService,
 	listControllerFactory,
 } from "@ban/shared/data-access/list-controller";
-import { Subject, tap, takeUntil } from "rxjs";
+import { tap } from "rxjs";
 import { ListComponent } from "@ban/shared/ui/list";
 import { ListItemTemplateDirective } from "@ban/shared/ui/list-item-template";
 import { TranslatePipe } from "@ban/shared/pipes/translate";
 import { CommonModule } from "@angular/common";
 import { PaymentListItemComponent } from "@ban/payments/ui/list-item";
 import { VarDirective } from "@ban/shared/ui/var-directive";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 const PAYMENT_ITEM_SIZE = 60;
 const SEARCH_FIELD = "status";
@@ -74,18 +75,15 @@ function offlineSearchFilter(
 	],
 	standalone: true,
 })
-export class PaymentListComponent implements OnInit, OnDestroy {
+export class PaymentListComponent implements OnInit {
 	readonly itemSize = PAYMENT_ITEM_SIZE;
 
 	readonly title = TITLE;
 
-	private readonly _destroy$ = new Subject<void>();
+	private translationService = inject(TranslationService);
+	private destroyRef = inject(DestroyRef);
 
-	private translationService: TranslationService = inject(TranslationService);
-
-	listController: ListControllerService<PaymentByStatus> = inject(
-		ListControllerService<PaymentByStatus>,
-	);
+	listController = inject(ListControllerService<PaymentByStatus>);
 
 	ngOnInit() {
 		// we have to trigger this on data change if using the template as it's being
@@ -93,13 +91,8 @@ export class PaymentListComponent implements OnInit, OnDestroy {
 		this.listController.displayedItems$
 			.pipe(
 				tap(() => this.translationService.onTranslationChange$.next()),
-				takeUntil(this._destroy$),
+				takeUntilDestroyed(this.destroyRef),
 			)
 			.subscribe();
-	}
-
-	ngOnDestroy() {
-		this._destroy$.next();
-		this._destroy$.complete();
 	}
 }

@@ -92,7 +92,5 @@ export class CountryListComponent {
 
 	readonly title = TITLE;
 
-	listController: ListControllerService<Country> = inject(
-		ListControllerService<Country>,
-	);
+	listController = inject(ListControllerService<Country>);
 }
