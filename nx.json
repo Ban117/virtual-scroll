@@ -1,6 +1,5 @@
 {
 	"$schema": "./node_modules/nx/schemas/nx-schema.json",
-	"npmScope": "ban",
 	"defaultProject": "virtual-list",
 	"tasksRunnerOptions": {
 		"default": {
@@ -62,6 +61,7 @@
 			"displayBlock": true,
 			"changeDetection": "OnPush",
 			"viewEncapsulation": "None",
+			"standalone": true,
 			"skipTests": true
 		},
 		"@nx/angular:scam": {
