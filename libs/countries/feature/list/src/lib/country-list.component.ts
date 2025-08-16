@@ -7,10 +7,11 @@ import {
 } from "@angular/core";
 import { Country, CountryService } from "@ban/countries/data-access";
 import { CountryListItemComponent } from "@ban/countries/ui/list-item";
+import { ListControllerDirective } from "@ban/shared/data-access/list-controller";
 import {
-	ListControllerService,
-	listControllerFactory,
-} from "@ban/shared/data-access/list-controller";
+	TOKENS,
+	createListControllerProviders,
+} from "@ban/shared/data-access/models";
 import { ListComponent } from "@ban/shared/ui/list";
 import { ListItemTemplateDirective } from "@ban/shared/ui/list-item-template";
 
@@ -58,7 +59,7 @@ function offlineSearchFilter(
 			[reachedEnd]="listController.reachedEnd"
 			[items]="listController.displayedItems$ | async"
 			(offsetChange)="listController.onOffsetChange($event)"
-			(searchTermChange)="this.listController.searchTerm$.next($event)"
+			(searchTermChange)="listController.searchTerm$.next($event)"
 		>
 			<ng-template
 				banListItem
@@ -75,22 +76,22 @@ function offlineSearchFilter(
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [
-		CountryService,
-		{
-			provide: ListControllerService<Country>,
-			useFactory: listControllerFactory(
-				SEARCH_FIELD,
-				offlineSearchFilter,
-			),
-			deps: [CountryService],
-		},
+		createListControllerProviders<Country>(
+			CountryService,
+			SEARCH_FIELD,
+			offlineSearchFilter,
+			TOKENS.COUNTRY_ENTITY_SERVICE_TOKEN,
+		),
 	],
+	hostDirectives: [ListControllerDirective],
 	standalone: true,
 })
 export class CountryListComponent {
 	readonly itemSize = COUNTRY_ITEM_SIZE;
 
+	something: unknown;
+
 	readonly title = TITLE;
 
-	listController = inject(ListControllerService<Country>);
+	listController = inject(ListControllerDirective<Country>);
 }

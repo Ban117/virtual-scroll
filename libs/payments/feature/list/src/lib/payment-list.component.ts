@@ -8,10 +8,7 @@ import {
 } from "@angular/core";
 import { PaymentByStatus, PaymentService } from "@ban/payments/data-access";
 import { TranslationService } from "@ban/shared/data-access/translations";
-import {
-	ListControllerService,
-	listControllerFactory,
-} from "@ban/shared/data-access/list-controller";
+import { ListControllerDirective } from "@ban/shared/data-access/list-controller";
 import { tap } from "rxjs";
 import { ListComponent } from "@ban/shared/ui/list";
 import { ListItemTemplateDirective } from "@ban/shared/ui/list-item-template";
@@ -20,6 +17,7 @@ import { CommonModule } from "@angular/common";
 import { PaymentListItemComponent } from "@ban/payments/ui/list-item";
 import { VarDirective } from "@ban/shared/ui/var-directive";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { createListControllerProviders } from "@ban/shared/data-access/models";
 
 const PAYMENT_ITEM_SIZE = 60;
 const SEARCH_FIELD = "status";
@@ -63,16 +61,13 @@ function offlineSearchFilter(
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [
-		PaymentService,
-		{
-			provide: ListControllerService<PaymentByStatus>,
-			useFactory: listControllerFactory(
-				SEARCH_FIELD,
-				offlineSearchFilter,
-			),
-			deps: [PaymentService],
-		},
+		createListControllerProviders<PaymentByStatus>(
+			PaymentService,
+			SEARCH_FIELD,
+			offlineSearchFilter,
+		),
 	],
+	hostDirectives: [ListControllerDirective],
 	standalone: true,
 })
 export class PaymentListComponent implements OnInit {
@@ -82,8 +77,7 @@ export class PaymentListComponent implements OnInit {
 
 	private translationService = inject(TranslationService);
 	private destroyRef = inject(DestroyRef);
-
-	listController = inject(ListControllerService<PaymentByStatus>);
+	listController = inject(ListControllerDirective<PaymentByStatus>);
 
 	ngOnInit() {
 		// we have to trigger this on data change if using the template as it's being

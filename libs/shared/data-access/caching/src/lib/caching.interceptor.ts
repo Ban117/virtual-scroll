@@ -10,12 +10,12 @@ import { Injectable, InjectionToken, inject } from "@angular/core";
 import { tap, of, Observable } from "rxjs";
 import { CacheService } from "./cache.service";
 
-export const SEARCH_URL = new InjectionToken<string>("SEARCH_URL");
+export const HTTP_CACHING_SEARCH_URL = new InjectionToken<string>("SEARCH_URL");
 
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
 	private cacheService: CacheService = inject(CacheService);
-	private searchUrl: string | null = inject(SEARCH_URL, {
+	private searchUrl: string | null = inject(HTTP_CACHING_SEARCH_URL, {
 		optional: true,
 	});
 

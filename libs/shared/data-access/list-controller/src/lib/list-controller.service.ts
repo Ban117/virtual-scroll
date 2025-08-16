@@ -1,4 +1,10 @@
-import { Entity, EntityService } from "@ban/shared/data-access/models";
+import { Directive, inject } from "@angular/core";
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import {
+	ENTITY_SERVICE_TOKEN,
+	Entity,
+	EntityService,
+} from "@ban/shared/data-access/models";
 import {
 	Subject,
 	BehaviorSubject,
@@ -21,20 +27,19 @@ export type OfflineSearchFilter<TItem extends Entity> = (
 	search: string,
 ) => boolean;
 
-export function listControllerFactory<TItem extends Entity>(
-	searchField: keyof TItem,
-	offlineSearchFilter: OfflineSearchFilter<TItem>,
-) {
-	return (entityService: EntityService<TItem>) => {
-		return new ListControllerService<TItem>(
-			searchField,
-			offlineSearchFilter,
-			entityService,
-		);
-	};
+export abstract class ListControllerConfig<TItem extends Entity> {
+	abstract searchField: keyof TItem;
+	abstract offlineSearchFilter: OfflineSearchFilter<TItem>;
 }
 
-export class ListControllerService<TItem extends Entity> {
+@Directive({
+	standalone: true,
+})
+export class ListControllerDirective<TItem extends Entity> {
+	private config = inject(ListControllerConfig<TItem>);
+
+	private entityService: EntityService<TItem> = inject(ENTITY_SERVICE_TOKEN);
+
 	reachedEnd = false;
 
 	searchTerm$ = new BehaviorSubject<string>("");
@@ -72,9 +77,9 @@ export class ListControllerService<TItem extends Entity> {
 			if (this.reachedEnd) {
 				return of(
 					storedItems.filter(item =>
-						this.offlineSearchFilter(
+						this.config.offlineSearchFilter(
 							item,
-							this.searchField,
+							this.config.searchField,
 							searchTerm,
 						),
 					),
@@ -82,7 +87,7 @@ export class ListControllerService<TItem extends Entity> {
 			}
 			return this.entityService.searchEntities$(
 				searchTerm,
-				this.searchField,
+				this.config.searchField,
 			);
 		}),
 		share(), // needed if we use the `ListItemTemplateDirective`
@@ -92,13 +97,13 @@ export class ListControllerService<TItem extends Entity> {
 		return this.searchTerm$.value === "";
 	}
 
-	constructor(
-		private searchField: keyof TItem,
-		private offlineSearchFilter: OfflineSearchFilter<TItem>,
-		private entityService: EntityService<TItem>,
-	) {
+	constructor() {
 		if (!this.entityService) {
 			throw new Error("Must provide ENTITY_SERVICE!");
+		}
+
+		if (!this.config.offlineSearchFilter || !this.config.searchField) {
+			throw new Error("Must provide config!");
 		}
 	}
 
@@ -111,12 +116,12 @@ export class ListControllerService<TItem extends Entity> {
 			.getEntitiesByRange$(offset, offset + this.batchSize)
 			.pipe(
 				tap(x => (this.totalItems = x.total)),
-				map(x => {
-					return x.body.reduce((acc, curr) => {
+				map(x =>
+					x.body.reduce((acc, curr) => {
 						const id = curr.id;
 						return { ...acc, [id]: curr };
-					}, {});
-				}),
+					}, {}),
+				),
 			);
 	}
 }

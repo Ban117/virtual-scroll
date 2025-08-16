@@ -20,7 +20,8 @@
 						"prefix": "ban",
 						"style": "kebab-case"
 					}
-				]
+				],
+				"@typescript-eslint/no-explicit-any": "error"
 			},
 			"extends": [
 				"plugin:@nx/angular",

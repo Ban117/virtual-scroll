@@ -10,7 +10,7 @@
 	[reachedEnd]="listController.reachedEnd"
 	[items]="displayedItems"
 	(offsetChange)="listController.onOffsetChange($event)"
-	(searchTermChange)="this.listController.searchTerm$.next($event)"
+	(searchTermChange)="listController.searchTerm$.next($event)"
 >
 	<ng-template
 		[banListItem]="displayedItems!"
